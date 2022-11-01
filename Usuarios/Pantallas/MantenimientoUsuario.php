@@ -58,7 +58,22 @@
                     <input class="form-control me-2" type="search" placeholder="Buscar" name="busqueda"> 
                     <button class="btn btn-outline-info" type="submit" name="enviar">Buscar</button>
                 </form>                  
-            </form> 
+            </form>
+            <?php
+            
+                $where = "";
+
+                if (isset($_GET['enviar'])) {
+                $busqueda = $_GET['busqueda'];
+
+
+                if (isset($_GET['busqueda'])) {
+                    $where = "WHERE usuarios.NOMBRE_USUARIO LIKE'%" . $busqueda . "%' OR TIPO_USUARIO  LIKE'%" . $busqueda . "%'
+                OR STATUS LIKE'%" . $busqueda . "%'";
+                }
+                }
+
+            ?>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -71,7 +86,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    $query = "select * from usuarios";
+                    $query = "select * from usuarios $where";
                     $result_tasks = mysqli_query($conn, $query);
 
                     while ($row = mysqli_fetch_array($result_tasks)) { ?>
@@ -105,6 +120,21 @@
     </div>
 
 </div>
+
+
+
+<?php 
+    /* Para filtrar usuario*/
+    if(isset($_GET['enviar'])){
+        $busqueda = $_GET['busqueda'];
+
+        if(isset($_GET['busqueda'])){
+
+        }
+
+    }
+
+?>
 
 
 <?php include("../includes/footer.php") ?>
