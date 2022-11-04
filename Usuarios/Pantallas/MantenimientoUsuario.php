@@ -1,6 +1,9 @@
-<?php include("../DATABASE/db.php");  
 
-    $query = "SELECT * FROM tipos_usuario";
+<?php
+    ///Para traer tipo usuario
+ include("../DATABASE/db.php");  
+
+    $query = "SELECT * FROM tipo_usuario";
     $result = mysqli_query($conn, $query);
 
 ?>
@@ -25,22 +28,28 @@
             <div class="card card-body">
                 <form action="../Procesos/agregarUsuario.php" method="POST">
                     <div class="form-group">
-                        <input type="text" name="NOMBRE_USUARIO" class="form-control" placeholder="Usuario" autofocus>
+                        <input type="text" name="username" class="form-control" placeholder="Usuario" autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="PASSWORD" class="form-control" placeholder="Contraseña">
+                        <input type="text" name="password" class="form-control" placeholder="Contraseña">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="apellido" class="form-control" placeholder="Apellido" autofocus>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name='ESTADO' type="checkbox" id="flexCheckDefault">
+                        <input class="form-check-input" name='status' type="checkbox" id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault">
                             Estado
                         </label>
                     </div>
 
-                    <select class="form-select" name="TIPO_USUARIO" aria-label="Default select example">
+                    <select class="form-select" name="tipo_usuario" aria-label="Default select example">
                         <?php foreach ($result as $opciones): ?>
 
-                            <option value="<?php echo $opciones['TIPO_USUARIO']?>"><?php echo $opciones['TIPO_USUARIO']?></option>
+                            <option value="<?php echo $opciones['nombre_tipo']?>"><?php echo $opciones['nombre_tipo']?></option>
                             
                         <?php endforeach ?>    
                     </select>       
@@ -80,13 +89,15 @@
                         <th>USUARIO</th>
                         <th>CONTRASEÑA</th>
                         <th>TIPO USUARIO</th>
+                        <th>NOMBRE</th>
+                        <th>APELLIDO</th>
                         <th>ESTADO</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $query = "select * from usuarios $where";
+                    $query = "select * from usuario $where";
                     $result_tasks = mysqli_query($conn, $query);
 
                     while ($row = mysqli_fetch_array($result_tasks)) { ?>

@@ -7,7 +7,7 @@ $conn= mysqli_connect(
     'localhost',
     'root',
     '',
-    'consmedico'
+    'consultorio_medico'
 );
 
 
