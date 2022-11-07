@@ -1,0 +1,44 @@
+/*#butlis{
+    margin: 5px;
+    margin-top: 25px;
+    border: none;
+    background-color: red;
+}*/
+
+#fila{ 
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
+.form-control{
+    border-radius: 30px;
+}
+
+.container{
+    background-color: white;
+}
+
+#nomb{
+    font-size: 18px; 
+}
+
+.btn-primary{
+    margin: 10px;
+    border-radius: 10px;
+    background-color: blue;
+    padding: 10px;
+
+}
+
+#divbutn{
+    text-align: center;
+}
+
+#btmod{
+    margin: 10px;
+    border-radius: 10px;
+    background-color: graytext;
+    padding: 10px;
+    color: white;
+}
