@@ -1,7 +1,7 @@
 <?php 
 
     include("../DATABASE/db.php");
-
+    //Codigo para agregar en la base de datos
     if(isset($_POST['agregarUsuario'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -29,4 +29,5 @@
         header("Location: ../Pantallas/MantenimientoUsuario.php");
 
     }
+    
 ?>
