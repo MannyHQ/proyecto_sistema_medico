@@ -16,12 +16,16 @@ include("../DATABASE/db.php");
                 <div class="col-md-8 align-self-center">
                     <form action="../Procesos/procesosProcedimientos.php" method="POST">
                         <div class="form-group">
+                            <label for="nombre_proc">ID Procedimiento</label>
+                            <input type="text" class="form-control" name="id_proc" id="id_proc" placeholder="Busca un procedimiento" onblur="cargandoDatos();" required>
+                        </div>
+                        <div class="form-group">
                             <label for="nombre_proc">Nombre procedimiento</label>
-                            <input type="text" class="form-control" name="nombre">
+                            <input type="text" class="form-control" name="nombre" id="nombre">
                         </div>
                         <div class="form-group">
                             <label for="">Descripcion del procedimiento</label>
-                            <textarea class="form-control" name="descripcion" id="" rows="2"></textarea>
+                            <textarea class="form-control" name="descripcion"  rows="2"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Precio</label>
@@ -33,12 +37,10 @@ include("../DATABASE/db.php");
                                 Estado
                             </label>
                         </div>
-                        <button type="submit" name="agregarProcedimiento" class="btn btn-primary">Guardar</button>
-                        <button type="submit" name="actualizarProcedimiento" class="btn btn-secondary">Modificar</button>
-                        
+                        <button type="submit" name="agregarProcedimiento" class="btn btn-primary">Registrar</button>
+                        <button type="submit" name="actualizarProcedimiento" class="btn btn-primary">Modificar</button>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
@@ -46,3 +48,36 @@ include("../DATABASE/db.php");
 
 
 <?php include("../includes/footer.php") ?>
+
+<script type="text/javascript">
+    function cargandoDatos() {
+        
+        
+        id = $("#id_proc").val();
+        console.log("id a buscar: "+id);
+
+        var parametros = {
+            "buscar": "1",
+            "id_proc": id
+
+        };
+        $.ajax({
+            data: parametros,
+            dataType: 'json',
+            url: '../Procesos/procesosProcedimientos.php',
+            type: 'POST',
+            beforeSend: function() {
+                alert("Enviando");
+            },
+            error: function() {
+                alert("Error");
+            },
+            complete: function(valores) {
+                alert("¡Listo!"+valores +" "+valores);
+            },
+            sucess: function(valores) {
+                $("#nombre").val(valores.nombre)
+            }
+        })
+    }
+</script>
