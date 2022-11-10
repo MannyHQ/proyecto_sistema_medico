@@ -67,8 +67,7 @@ if (isset($_POST['buscar'])) {
         $prueba = $consulta['nombre_proc'];
     }
 
-    //$query = "INSERT INTO prueba(pruebavalor) VALUES ('$valores.nombre')";
-    //$resultados = mysqli_query($conn, $query );
+
 
     $valores = json_encode($valores);
     echo ($valores);

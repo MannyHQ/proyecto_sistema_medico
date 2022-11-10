@@ -49,3 +49,5 @@ include("../DATABASE/db.php");
         </div>
     </div>
 </div>
+
+<?php include("../includes/footer.php") ?>

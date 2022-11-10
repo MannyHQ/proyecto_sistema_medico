@@ -2,7 +2,7 @@
 
 //Para traer datos de los tipos de usuario
 
-    $query2 = "SELECT * FROM tipos_usuario";
+    $query2 = "SELECT * FROM tipo_usuario";
     $result2 = mysqli_query($conn, $query2);
 
 
@@ -11,15 +11,18 @@
 if(isset($_GET['ID_USUARIO'])){
     $ID_USUARIO = $_GET['ID_USUARIO'];
     
-    $query = "SELECT * FROM usuarios where ID_USUARIO = $ID_USUARIO";
+    $query = "SELECT * FROM usuario where ID_USUARIO = $ID_USUARIO";
     $result = mysqli_query($conn, $query);
 
     if(mysqli_num_rows($result) == 1){
         $row = mysqli_fetch_array($result);
-        $NOMBRE_USUARIO = $row['NOMBRE_USUARIO'];
-        $PASSWORD = $row['PASSWORD'];
-        $TIPO_USUARIO = $row['TIPO_USUARIO'];
-        $ESTADO = $row['STATUS'];
+        $NOMBRE_USUARIO = $row['username'];
+        $PASSWORD = $row['password'];
+        $TIPO_USUARIO = $row['tipo_user'];
+        $NOMBRE = $row['nombre'];
+        $APELLIDO = $row['apellido'];
+        $hora_entrada = $row["hora_entrada"];
+        $ESTADO = $row['status'];
         $waos = 'exito';
     } 
 }
@@ -27,8 +30,10 @@ if(isset($_GET['ID_USUARIO'])){
 //Codigo para actualizar en la base de datos
 if (isset($_POST['update'])) {
     $ID_USUARIO = $_GET['ID_USUARIO'];
-    $NOMBRE_USUARIO = $_POST['NOMBRE_USUARIO'];
-    $PASSWORD = $_POST['PASSWORD'];
+    $NOMBRE_USUARIO = $_POST['username'];
+    $PASSWORD = $_POST['password'];
+    $NOMBRE = $_POST['nombre'];
+    $APELLIDO = $_POST['apellido'];
     $TIPO_USUARIO = $_POST['TIPO_USUARIO'];
     if (isset($_POST['ESTADO']) == '1'){
         $ESTADO = TRUE;
@@ -38,7 +43,7 @@ if (isset($_POST['update'])) {
     }
     
 
-  $query = "UPDATE usuarios set NOMBRE_USUARIO = '$NOMBRE_USUARIO', PASSWORD = '$PASSWORD', STATUS = '$ESTADO', TIPO_USUARIO = '$TIPO_USUARIO'
+  $query = "UPDATE usuario set username = '$NOMBRE_USUARIO', PASSWORD = '$PASSWORD', STATUS = '$ESTADO', TIPO_USER = '$TIPO_USUARIO', NOMBRE =  '$NOMBRE', APELLIDO = '$APELLIDO'
    where ID_USUARIO = $ID_USUARIO";
   mysqli_query($conn, $query);
 
@@ -60,10 +65,16 @@ if (isset($_POST['update'])) {
             <div class="card card-body">
                 <form action="editarUsuario.php?ID_USUARIO=<?php echo $_GET['ID_USUARIO']; ?>" method="POST">
                     <div class="form-group">
-                        <input type="text" name="NOMBRE_USUARIO" value="<?php echo $NOMBRE_USUARIO; ?>" class="form-control" placeholder="Actualizar Usuario" autofocus>
+                        <input type="text" name="username" value="<?php echo $NOMBRE_USUARIO; ?>" class="form-control" placeholder="Actualizar Usuario" autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="PASSWORD" value="<?php echo $PASSWORD; ?>" class="form-control" placeholder="Actualizar Contraseña">
+                        <input type="text" name="password" value="<?php echo $PASSWORD; ?>" class="form-control" placeholder="Actualizar Usuario" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="nombre" value="<?php echo $NOMBRE; ?>" class="form-control" placeholder="Actualizar Usuario" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="apellido" value="<?php echo $APELLIDO; ?>" class="form-control" placeholder="Actualizar Usuario" autofocus>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" name='ESTADO' type="checkbox" value="" <?php if ($ESTADO) echo "checked"; ?> id="flexCheckDefault">
@@ -75,9 +86,9 @@ if (isset($_POST['update'])) {
                     <select class="form-select" name="TIPO_USUARIO" aria-label="Default select example">
                         <?php foreach ($result2 as $opciones): ?>
 
-                            <option value="<?php echo $opciones['TIPO_USUARIO']?>" <?php if($opciones['TIPO_USUARIO'] == $TIPO_USUARIO){
+                            <option value="<?php echo $opciones['nombre_tipo']?>" <?php if($opciones['nombre_tipo'] == $TIPO_USUARIO){
                                 echo "selected";
-                            }  ?>  ><?php echo $opciones['TIPO_USUARIO']?></option>
+                            }  ?>  ><?php echo $opciones['nombre_tipo']?></option>
                             
                         <?php endforeach ?>    
                     </select>       

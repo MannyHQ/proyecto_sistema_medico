@@ -16,7 +16,8 @@
         +pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ81WUE00s/"
         crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -50,9 +51,10 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">Mantenimiento Pacientes</a></li>
-                  <li><a class="dropdown-item" href="#">Mantenimiento Doctores</a></li>
-                  <li><a class="dropdown-item" href="#">Mantenimiento Usuario</a></li>
-                  <li><a class="dropdown-item" href="#">Mantenimiento Pago</a></li>
+                  <li><a class="dropdown-item" href="">Mantenimiento Doctores</a></li>
+                  <li><a class="dropdown-item" href="../Pantallas/MantenimientoUsuario.php">Mantenimiento Usuario</a></li>
+                  <li><a class="dropdown-item" href="../Pantallas/MantenimientoAseguradora.php">Mantenimiento Aseguradora</a></li>
+                  <li><a class="dropdown-item" href="../Pantallas/MantenimientoProcedimientos.php">Mantenimiento Procedimientos</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>

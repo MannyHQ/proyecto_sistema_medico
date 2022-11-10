@@ -76,7 +76,7 @@ include("../DATABASE/db.php");
                 alert("¡Listo!"+valores +" "+valores);
             },
             sucess: function(valores) {
-                $("#nombre").val(valores.nombre)
+                alert("¡Listo!"+valores +" "+valores);
             }
         })
     }

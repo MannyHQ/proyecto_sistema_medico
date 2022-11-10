@@ -86,11 +86,12 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>USUARIO</th>
+                        <th>USERNAME</th>
                         <th>CONTRASEÑA</th>
                         <th>TIPO USUARIO</th>
                         <th>NOMBRE</th>
                         <th>APELLIDO</th>
+                        <th>HORA ENTRADA</th>
                         <th>ESTADO</th>
                         <th>ACCIONES</th>
                     </tr>
@@ -103,10 +104,13 @@
                     while ($row = mysqli_fetch_array($result_tasks)) { ?>
 
                         <tr>
-                            <td><?php echo $row['NOMBRE_USUARIO'] ?></td>
-                            <td><?php echo $row['PASSWORD'] ?></td>
-                            <td><?php echo $row['TIPO_USUARIO'] ?></td>
-                            <td><?php if($row['STATUS'] == '1'){
+                            <td><?php echo $row['username'] ?></td>
+                            <td><?php echo $row['password'] ?></td>
+                            <td><?php echo $row['tipo_user'] ?></td>
+                            <td><?php echo $row['nombre'] ?></td>
+                            <td><?php echo $row['apellido'] ?></td>
+                            <td><?php echo $row['hora_entrada'] ?></td>
+                            <td><?php if($row['status'] == '1'){
                                 echo "ACTIVO";
                             }else{
                                 echo "INACTIVO";
@@ -114,10 +118,10 @@
                             
                              ?></td>
                             <td>
-                                <a href="./editarUsuario.php?ID_USUARIO=<?php echo $row['ID_USUARIO'] ?>" class="btn btn-secondary">
+                                <a href="editarUsuario.php?ID_USUARIO=<?php echo $row['id_usuario'] ?>" class="btn btn-secondary">
                                     <i class="fas fa-marker"></i>
                                 </a>
-                                <a href="../Procesos/eliminarUsuario.php?ID_USUARIO=<?php echo $row['ID_USUARIO'] ?>" class="btn btn-danger">
+                                <a href="../Procesos/eliminarUsuario.php?ID_USUARIO=<?php echo $row['id_usuario'] ?>" class="btn btn-danger">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
                             </td>
