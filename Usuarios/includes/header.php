@@ -50,8 +50,8 @@
                   Mantenimientos
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Mantenimiento Pacientes</a></li>
-                  <li><a class="dropdown-item" href="">Mantenimiento Doctores</a></li>
+                  <li><a class="dropdown-item" href="../Pantallas/MantenimientoPacientes.php">Mantenimiento Pacientes</a></li>
+                  <li><a class="dropdown-item" href="../Pantallas/MantenimientoDoctores.php">Mantenimiento Doctores</a></li>
                   <li><a class="dropdown-item" href="../Pantallas/MantenimientoUsuario.php">Mantenimiento Usuario</a></li>
                   <li><a class="dropdown-item" href="../Pantallas/MantenimientoAseguradora.php">Mantenimiento Aseguradora</a></li>
                   <li><a class="dropdown-item" href="../Pantallas/MantenimientoProcedimientos.php">Mantenimiento Procedimientos</a></li>

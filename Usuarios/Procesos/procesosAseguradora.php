@@ -3,7 +3,6 @@
 include("../DATABASE/db.php");
 //Codigo para agregar
 if (isset($_POST['agregarAseguradora'])) {
-    $id = $_POST["id_asg"];
     $nombre = $_POST['nombre'];
     $direccion = $_POST['direccion'];
     $correo = $_POST['correo'];
@@ -16,13 +15,13 @@ if (isset($_POST['agregarAseguradora'])) {
 
 
 
-    $query = "INSERT INTO aseguradora(id_aseguradora,nombre, direccion, correo,telefono,status ) VALUES ('$id','$nombre', '$direccion','$correo','$telefono','$ESTADO')";
+    $query = "INSERT INTO aseguradora(nombre, direccion, correo,telefono,status ) VALUES ('$nombre', '$direccion','$correo','$telefono','$ESTADO')";
     $result = mysqli_query($conn, $query);
     if (!$result) {
         die("Querry Failed");
     }
 
-    $_SESSION['message'] = 'Usuario guardado exitosamente';
+    $_SESSION['message'] = 'Aseguradora guardado exitosamente';
     $_SESSION['message_type'] = 'success';
 
     header("Location: ../Pantallas/MantenimientoAseguradora.php");

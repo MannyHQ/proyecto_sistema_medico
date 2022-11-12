@@ -24,7 +24,17 @@ if(isset($_GET['ID_USUARIO'])){
         $hora_entrada = $row["hora_entrada"];
         $ESTADO = $row['status'];
         $waos = 'exito';
-    } 
+        }
+        else{
+        $NOMBRE_USUARIO = ".";
+        $PASSWORD = ".";
+        $TIPO_USUARIO = "";
+        $NOMBRE = "";
+        $APELLIDO = "";
+        $hora_entrada = "";
+        $ESTADO = "";
+        $waos = "";
+        } 
 }
 
 //Codigo para actualizar en la base de datos
