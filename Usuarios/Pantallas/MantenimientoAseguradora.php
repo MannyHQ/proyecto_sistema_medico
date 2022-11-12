@@ -9,6 +9,7 @@ include("../DATABASE/db.php");
 <?php include("../includes/header.php") ?>
 
 <div class="container p-4">
+    <h3>Mantenimiento Aseguradora</h3>
     <div class="row">
     <?php if (isset($_SESSION['message'])) { ?>
             <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
@@ -44,7 +45,7 @@ include("../DATABASE/db.php");
                             </label>
                         </div>
                         <button type="submit" name="agregarAseguradora" class="btn btn-primary">Registrar</button>
-                        <button type="submit" name="actualizarAseguradora" class="btn btn-primary">Modificar</button>
+                        <button type="reset" name="actualizarAseguradora" class="btn btn-primary">Cancelar</button>
                     </form>
                 
             </div>
@@ -102,10 +103,10 @@ include("../DATABASE/db.php");
 
                                 ?></td>
                             <td>
-                                <a href="editarUsuario.php?ID_USUARIO=<?php echo $row['id_aseguradora'] ?>" class="btn btn-secondary">
+                                <a href="../Procesos/editarAseguradora.php?ID_ASEGURADORA=<?php echo $row['id_aseguradora'] ?>" class="btn btn-secondary">
                                     <i class="fas fa-marker"></i>
                                 </a>
-                                <a href="../Procesos/eliminarUsuario.php?ID_USUARIO=<?php echo $row['id_aseguradora'] ?>" class="btn btn-danger">
+                                <a href="../Procesos/eliminarUsuario.php?ID_ASEGURADORA=<?php echo $row['id_aseguradora'] ?>" class="btn btn-danger">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
                             </td>

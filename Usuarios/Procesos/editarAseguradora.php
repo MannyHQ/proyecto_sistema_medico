@@ -1,65 +1,88 @@
 <?php include("../DATABASE/db.php");
 
-//Para traer datos de los tipos de usuario
-
-    $query2 = "SELECT * FROM tipo_usuario";
-    $result2 = mysqli_query($conn, $query2);
 
 
 
-//Para traer el dato seleccionado a la pantala de actualizar
-if(isset($_GET['ID_USUARIO'])){
-    $ID_USUARIO = $_GET['ID_USUARIO'];
-    
-    $query = "SELECT * FROM usuario where ID_USUARIO = $ID_USUARIO";
-    $result = mysqli_query($conn, $query);
+    //Para traer el dato seleccionado a la pantala de actualizar
+    if (isset($_GET['ID_ASEGURADORA'])) {
+        $ID_ASEGURADORA = $_GET['ID_ASEGURADORA'];
 
-    if(mysqli_num_rows($result) == 1){
-        $row = mysqli_fetch_array($result);
-        $NOMBRE_USUARIO = $row['username'];
-        $PASSWORD = $row['password'];
-        $TIPO_USUARIO = $row['tipo_user'];
-        $NOMBRE = $row['nombre'];
-        $APELLIDO = $row['apellido'];
-        $hora_entrada = $row["hora_entrada"];
-        $ESTADO = $row['status'];
-        $waos = 'exito';
+        $query = "SELECT * FROM aseguradora where ID_ASEGURADORA = $ID_ASEGURADORA";
+        $result = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_array($result);
+            $NOMBRE = $row['nombre'];
+            $DIRECCION = $row['direccion'];
+            $CORREO = $row['correo'];
+            $TELEFONO = $row['telefono'];
+            $ESTADO = $row['status'];
         }
-        else{
-        $NOMBRE_USUARIO = ".";
-        $PASSWORD = ".";
-        $TIPO_USUARIO = "";
-        $NOMBRE = "";
-        $APELLIDO = "";
-        $hora_entrada = "";
-        $ESTADO = "";
-        $waos = "";
-        } 
-}
-
-//Codigo para actualizar en la base de datos
-if (isset($_POST['update'])) {
-    $ID_USUARIO = $_GET['ID_USUARIO'];
-    $NOMBRE_USUARIO = $_POST['username'];
-    $PASSWORD = $_POST['password'];
-    $NOMBRE = $_POST['nombre'];
-    $APELLIDO = $_POST['apellido'];
-    $TIPO_USUARIO = $_POST['TIPO_USUARIO'];
-    if (isset($_POST['ESTADO']) == '1'){
-        $ESTADO = TRUE;
-
-    }else{
-        $ESTADO = FALSE;
     }
-    
 
-  $query = "UPDATE usuario set username = '$NOMBRE_USUARIO', PASSWORD = '$PASSWORD', STATUS = '$ESTADO', TIPO_USER = '$TIPO_USUARIO', NOMBRE =  '$NOMBRE', APELLIDO = '$APELLIDO'
-   where ID_USUARIO = $ID_USUARIO";
-  mysqli_query($conn, $query);
+    //Codigo para actualizar en la base de datos
+    if (isset($_POST['update'])) {
+        $ID_ASEGURADORA = $_GET['ID_ASEGURADORA'];
+        $NOMBRE = $_POST['nombre'];
+        $DIRECCION = $_POST['direccion'];
+        $CORREO = $_POST['correo'];
+        $TELEFONO = $_POST['telefono'];
+        if (isset($_POST['ESTADO']) == '1') {
+            $ESTADO = TRUE;
+        } else {
+            $ESTADO = FALSE;
+        }
 
-    $_SESSION['message'] = 'Usuario actualizado satisfactoriamente';
-      $_SESSION['message_type'] = 'info';
- 
-  header("Location: MantenimientoUsuario.php");
-}
+
+        $query = "UPDATE aseguradora set nombre = '$NOMBRE', direccion = '$DIRECCION', STATUS = '$ESTADO', correo = '$CORREO', telefono =  '$TELEFONO'
+    where id_aseguradora = $ID_ASEGURADORA";
+        mysqli_query($conn, $query);
+
+        $_SESSION['message'] = 'Aseguradora actualizado satisfactoriamente';
+        $_SESSION['message_type'] = 'info';
+
+        header("Location: ../Pantallas/MantenimientoAseguradora.php");
+    }
 ?>
+
+
+
+<?php include("../includes/header.php") ?>
+
+<div class="container p-4">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card card-body ">
+
+                <form action="../Procesos/editarAseguradora.php?ID_ASEGURADORA=<?php echo $_GET['ID_ASEGURADORA']; ?>" method="POST">
+                    <div class="form-group">
+                        <label for="nombre_proc">Nombre aseguradora</label>
+                        <input type="text" class="form-control" name="nombre" value="<?php echo $NOMBRE; ?>" id="nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Direccion</label>
+                        <input type="text" class="form-control" name="direccion" value="<?php echo $DIRECCION; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Correo</label>
+                        <input type="text" class="form-control" name="correo" value="<?php echo $CORREO; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Telefono</label>
+                        <input type="text" class="form-control" name="telefono" value="<?php echo $TELEFONO; ?>">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-group-input" name='ESTADO' type="checkbox" value="" <?php if ($ESTADO) echo "checked"; ?> id="flexCheckDefault">
+                        <label class="form-group-label" for="flexCheckDefault">
+                            Estado
+                        </label>
+                    </div>
+                    <button class="btn btn-success" name="update">
+                        Actualizar
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
