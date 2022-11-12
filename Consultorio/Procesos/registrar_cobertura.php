@@ -13,7 +13,6 @@ if (isset($_POST['btn_enviar'])) {
     $ars = $_POST['ars'];
     $num_ars = $_POST['numars'];
     $direccion = $_POST['direccion'];
-    
     if (isset($_POST["status"])) {
         $status = 0;
     } else {
@@ -26,11 +25,10 @@ if (isset($_POST['btn_enviar'])) {
     if (!$resultado) {
         die("Querry Failed");
     }
-
     $_SESSION['message'] = 'Usuario guardado exitosamente';
     $_SESSION['message_type'] = 'success';
 
-    header("Location: ../Mantenimientos/cobertura.php");
+   header("Location: ../Mantenimientos/Confirmar_Cobertura.php");
 }
 ?>
 

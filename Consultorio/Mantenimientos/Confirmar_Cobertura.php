@@ -2,6 +2,8 @@
 
 <?php include("../Conexion/abrir_conexion.php"); ?>
 
+<?php include("../Procesos/registrar_cobertura.php"); ?>
+
 <div class="container"> 
     <div class="row">
         <div class="col-md-3"> 
@@ -9,30 +11,40 @@
         </div>
 
         <div class="col-md-6" class="row mt-3 g-3 needs-">
-            
+
             <form action="https://formsubmit.co/isaacespinal.iee@gmail.com" method="POST" >
                 <table border="1" >
                     <tr>
-                        <td>id</td>
-                        <td>nombre</td>
-                        <td>apellido</td>
-                        <td>email</td>
-                        <td>telefono</td>	
+                        <td>CEDULA</td>
+                        <td>NOMBRE</td>
+                        <td>APELLIDO</td>
+                        <td>EMAIL</td>
+                        <td>TELEFONO</td>	
+                        <td>CELULAR</td>
+                        <td>ARS</td>
+                        <td>NUMERO_ARS</td>
+                        <td>DIRECCION</td>
+
                     </tr>
 
                     <?php
-                    $sql = "SELECT * from t_persona";
-                    $result = mysqli_query($conexion, $sql);
+                    $sql = "SELECT * FROM cobertura ORDER BY id_cob DESC LIMIT 1;";
+                    $result = mysqli_query($conex, $sql);
 
                     while ($mostrar = mysqli_fetch_array($result)) {
                         ?>
-
+                    
+                    <input name="nom" type="text" class="form-control" id="direccion" value="<?php echo $mostrar['nombre']  ?>" placeholder="recibi" >
                         <tr>
-                            <td><?php echo $mostrar['id'] ?></td>
+                            <td ><?php echo $mostrar['cedula'] ?></td>
                             <td><?php echo $mostrar['nombre'] ?></td>
                             <td><?php echo $mostrar['apellido'] ?></td>
                             <td><?php echo $mostrar['email'] ?></td>
                             <td><?php echo $mostrar['telefono'] ?></td>
+                            <td><?php echo $mostrar['celular'] ?></td>
+                            <td><?php echo $mostrar['ars'] ?></td>
+                            <td><?php echo $mostrar['num_ars'] ?></td>
+                            <td><?php echo $mostrar['direccion'] ?></td>
                         </tr>
                         <?php
                     }
@@ -48,15 +60,14 @@
                 <input type="hidden" name="_next" value="http://localhost/consultorio/Mantenimientos/cobertura.php">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                
+
             </form>
             <div class="col-md-3">
 
             </div>
 
-
         </div>
-        </form>
+
     </div>
 
 </div>
