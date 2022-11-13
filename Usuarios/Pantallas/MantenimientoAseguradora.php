@@ -44,6 +44,7 @@ include("../DATABASE/db.php");
                                 Estado
                             </label>
                         </div>
+                        <br>
                         <button type="submit" name="agregarAseguradora" class="btn btn-primary">Registrar</button>
                         <button type="reset" name="actualizarAseguradora" class="btn btn-primary">Cancelar</button>
                     </form>

@@ -10,32 +10,40 @@ include("../DATABASE/db.php");
 
 <div class="container p-4">
     <div class="row">
+        <?php if (isset($_SESSION['message'])) { ?>
+            <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+                <?= $_SESSION['message'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php session_unset();
+        } ?>
         <div class="col-md-4">
             <div class="card card-body ">
-                
-                    <form action="../Procesos/procesosProcedimientos.php" method="POST">
-                        <div class="form-group">
-                            <label for="nombre_proc">Nombre procedimiento</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Descripcion del procedimiento</label>
-                            <textarea class="form-control" name="descripcion"  rows="2"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Precio</label>
-                            <input type="text" class="form-control" name="precio">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-group-input" name='ESTADO' type="checkbox" id="flexCheckDefault">
-                            <label class="form-group-label" for="flexCheckDefault">
-                                Estado
-                            </label>
-                        </div>
-                        <button type="submit" name="agregarProcedimiento" class="btn btn-primary">Registrar</button>
-                        <button type="submit" name="actualizarProcedimiento" class="btn btn-primary">Modificar</button>
-                    </form>
-                
+
+                <form action="../Procesos/procesosProcedimientos.php" method="POST">
+                    <div class="form-group">
+                        <label for="nombre_proc">Nombre procedimiento</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Descripcion del procedimiento</label>
+                        <textarea class="form-control" name="descripcion" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Precio</label>
+                        <input type="text" class="form-control" name="precio">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-group-input" name='ESTADO' type="checkbox" id="flexCheckDefault">
+                        <label class="form-group-label" for="flexCheckDefault">
+                            Estado
+                        </label>
+                    </div>
+                    <br>
+                    <button type="submit" name="agregarProcedimiento" class="btn btn-primary">Registrar</button>
+                    <input type="reset" class="btn btn-primary btn-block" name="cancelarUsuario" value="Cancelar">
+                </form>
+
             </div>
         </div>
         <div class="col-md-8">
@@ -89,10 +97,10 @@ include("../DATABASE/db.php");
 
                                 ?></td>
                             <td>
-                                <a href="editarUsuario.php?ID_USUARIO=<?php echo $row['id_proc'] ?>" class="btn btn-secondary">
+                                <a href="../Procesos/editarProcedimientos.php?id_proc=<?php echo $row['id_proc'] ?>" class="btn btn-secondary">
                                     <i class="fas fa-marker"></i>
                                 </a>
-                                <a href="../Procesos/eliminarUsuario.php?ID_USUARIO=<?php echo $row['id_proc'] ?>" class="btn btn-danger">
+                                <a href="../Procesos/eliminarUsuario.php?id_proc=<?php echo $row['id_proc'] ?>" class="btn btn-danger">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -107,4 +115,3 @@ include("../DATABASE/db.php");
 
 
 <?php include("../includes/footer.php") ?>
-

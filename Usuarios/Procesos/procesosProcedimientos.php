@@ -21,7 +21,7 @@ if (isset($_POST['agregarProcedimiento'])) {
         die("Querry Failed");
     }
 
-    $_SESSION['message'] = 'Usuario guardado exitosamente';
+    $_SESSION['message'] = 'Procedimiento guardado exitosamente';
     $_SESSION['message_type'] = 'success';
 
     header("Location: ../Pantallas/MantenimientoProcedimientos.php");
@@ -44,7 +44,7 @@ if (isset($_POST['actualizarProcedimiento'])) {
            where ID_proc = $ID";
     mysqli_query($conn, $query);
 
-    $_SESSION['message'] = 'Usuario actualizado satisfactoriamente';
+    $_SESSION['message'] = 'Proceso actualizado satisfactoriamente';
     $_SESSION['message_type'] = 'info';
 
     header("Location: ../Pantallas/MantenimientoProcedimientos.php");

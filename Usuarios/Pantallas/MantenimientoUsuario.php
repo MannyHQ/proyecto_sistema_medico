@@ -60,7 +60,6 @@ $result = mysqli_query($conn, $query);
                     <br>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary btn-block" name="agregarUsuario" value="Registrar">
-                        <input type="submit" class="btn btn-primary btn-block" name="modificarUsuario" value="Modificar">
                         <input type="reset" class="btn btn-primary btn-block" name="cancelarUsuario" value="Cancelar">
                     </div>
                 </form>
