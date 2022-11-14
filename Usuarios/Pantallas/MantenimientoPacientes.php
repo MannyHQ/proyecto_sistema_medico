@@ -59,7 +59,7 @@ $result = mysqli_query($conn, $query);
                         <textarea class="form-control" name="direccion" rows="2"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for='tipo_sangre' class="form-check-label" for="flexCheckDefault"> Tipo usuario </label>
+                        <label for='tipo_sangre' class="form-check-label" for="flexCheckDefault"> Tipo sangre </label>
                         <select class="form-select" name="tipo_sangre" aria-label="Default select example">
                             <option value="A+">A+</option>
                             <option value="A-">A-</option>
@@ -67,15 +67,15 @@ $result = mysqli_query($conn, $query);
                             <option value="B-">B-</option>
                             <option value="AB+">AB+</option>
                             <option value="AB-">AB-</option>
-                            <option value="O+">A+</option>
-                            <option value="0-">B+</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
                         </select>
                     </div>
 
                     <div class="form-group">
 
-                        <label for='status' class="form-check-label" for="flexCheckDefault"> Estado </label>
-                        <input class="form-check-input" name='status' type="checkbox" id="flexCheckDefault">
+                        <label for='ESTADO' class="form-check-label" for="flexCheckDefault"> Estado </label>
+                        <input class="form-check-input" name='ESTADO' type="checkbox" id="flexCheckDefault">
                     </div>
 
 
@@ -150,7 +150,7 @@ $result = mysqli_query($conn, $query);
 
                                         ?></td>
                                     <td>
-                                        <a href="editarUsuario.php?ID_USUARIO=<?php echo $row['id_paciente'] ?>" class="btn btn-secondary">
+                                        <a href="../Procesos/editarPacientes.php?ID_PACIENTE=<?php echo $row['id_paciente'] ?>" class="btn btn-secondary">
                                             <i class="fas fa-marker"></i>
                                         </a>
                                         <a href="../Procesos/procesosUsuario.php?ID_USUARIO=<?php echo $row['id_paciente'] ?>" class="btn btn-danger">

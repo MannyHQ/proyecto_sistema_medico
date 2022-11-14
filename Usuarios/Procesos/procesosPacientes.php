@@ -9,8 +9,7 @@
         $cedula = $_POST['cedula'];
         $seguro = $_POST['seguro'];
         $direccion = $_POST['direccion'];
-        $tipo_sangre = $_POST['cedula'];
-        $TIPO_USUARIO = $_POST['tipo_sangre'];
+        $tipo_sangre = $_POST['tipo_sangre'];
         if (isset($_POST['ESTADO']) == '1'){
             $ESTADO = TRUE;
 

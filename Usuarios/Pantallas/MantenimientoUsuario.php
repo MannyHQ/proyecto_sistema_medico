@@ -42,7 +42,6 @@ $result = mysqli_query($conn, $query);
                         <input type="text" name="apellido" class="form-control" autofocus>
                     </div>
                     <div class="form-group">
-                        
                         <label for='status' class="form-check-label" for="flexCheckDefault"> Activo </label>
                         <input class="form-check-input" name='status' type="checkbox" id="flexCheckDefault">
                     </div>
