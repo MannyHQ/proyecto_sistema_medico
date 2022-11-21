@@ -149,9 +149,9 @@ include("../DATABASE/db.php");
                         while ($row = mysqli_fetch_array($result_tasks)) { ?>
 
                             <tr>
-                                <td><?php echo $row['nombre'] ?></td>
-                                <td><?php echo $row['direccion'] ?></td>
-                                <td><?php echo $row['correo'] ?></td>
+                                <td><?php echo $row['nombre_aseguradora'] ?></td>
+                                <td><?php echo $row['direccion_aseguradora'] ?></td>
+                                <td><?php echo $row['correo_aseguradora'] ?></td>
                                 <td><?php echo $row['telefono'] ?></td>
                                 <td><?php if ($row['status'] == '1') {
                                         echo "ACTIVO";

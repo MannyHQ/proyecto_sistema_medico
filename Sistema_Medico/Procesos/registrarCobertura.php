@@ -28,6 +28,6 @@ if (isset($_POST['btn_enviar'])) {
     }
     
 
-   header("Location: ../Pantallas/procesoCobertura.php");
+   header("Location: ../Pantallas/confirmarCobertura.php");
 }
 ?>

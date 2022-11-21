@@ -6,15 +6,15 @@
 //Para traer el dato seleccionado a la pantala de actualizar
 if (isset($_GET['ID_ASEGURADORA'])) {
     $ID_ASEGURADORA = $_GET['ID_ASEGURADORA'];
-
+    
     $query = "SELECT * FROM aseguradora where ID_ASEGURADORA = $ID_ASEGURADORA";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
-        $NOMBRE = $row['nombre'];
-        $DIRECCION = $row['direccion'];
-        $CORREO = $row['correo'];
+        $NOMBRE = $row['nombre_aseguradora'];
+        $DIRECCION = $row['direccion_aseguradora'];
+        $CORREO = $row['correo_aseguradora'];
         $TELEFONO = $row['telefono'];
         $ESTADO = $row['status'];
     }

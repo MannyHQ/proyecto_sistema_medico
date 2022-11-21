@@ -285,10 +285,12 @@ $result = mysqli_query($conn, $query);
                                 <th>NOMBRE</th>
                                 <th>APELLIDO</th>
                                 <th>SEXO</th>
-                                <th>NACIMIENTO</th>
                                 <th>CEDULA</th>
+                                <th>CORREO</th>
                                 <th>TELEFONO</th>
                                 <th>SEGURO</th>
+                                <th>No Seguro</th>
+                                <th>NACIMIENTO</th>
                                 <th>DIRECCION</th>
                                 <th>SANGRE</th>
                                 <th>ESTADO</th>
@@ -297,7 +299,13 @@ $result = mysqli_query($conn, $query);
                         </thead>
                         <tbody>
                             <?php
-                            $query = "SELECT nombre,apellido,sexo,fecha_naci,cedula,direccion,tipo_sangre,status FROM paciente";
+                            $query = "SELECT paciente.id_paciente,nombre,apellido, correo,tipo_sangre,status_paciente, num_telefono,seguro,direccion,sexo,cedula,fecha_naci,nombre_aseguradora FROM paciente
+                            CROSS JOIN aseguradora
+                            CROSS JOIN correo
+                            CROSS JOIN paciente_vs_aseguradora ON paciente.cedula = paciente_vs_aseguradora.id_paciente
+                            CROSS JOIN paciente_vs_correo ON paciente.cedula = paciente_vs_correo.id_paciente
+                            CROSS JOIN paciente_vs_telefono ON paciente.cedula = paciente_vs_telefono.id_paciente
+                            WHERE aseguradora.id_aseguradora = paciente_vs_aseguradora.id_aseguradora AND correo.id_correo = paciente_vs_correo.id_correo;";
                             $result_tasks = mysqli_query($conn, $query);
                             
                             
@@ -308,13 +316,17 @@ $result = mysqli_query($conn, $query);
                                     <td><?php echo $row['nombre'] ?></td>
                                     <td><?php echo $row['apellido'] ?></td>
                                     <td><?php echo $row['sexo'] ?></td>
-                                    <td><?php echo $row['fecha_naci'] ?></td>
                                     <td><?php echo $row['cedula'] ?></td>
-                                    <td>"Pendiente"</td>
-                                    <td><?php echo $row['nombre'] ?></td>
+                                    <td><?php echo $row['correo'] ?></td>
+                                    <td><?php echo $row['num_telefono'] ?></td>
+                                    <td><?php echo $row['seguro'] ?></td>
+                                    <td><?php echo $row['nombre_aseguradora'] ?></td>
+                                    <td><?php echo $row['fecha_naci'] ?></td>
+                    
+    
                                     <td><?php echo $row['direccion'] ?></td>
                                     <td><?php echo $row['tipo_sangre'] ?></td>
-                                    <td><?php if ($row['status'] == '1') {
+                                    <td><?php if ($row['status_paciente'] == '1') {
                                             echo "ACTIVO";
                                         } else {
                                             echo "INACTIVO";
