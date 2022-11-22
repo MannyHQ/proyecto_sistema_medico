@@ -1,0 +1,33 @@
+#butlis{
+    margin: 5px;
+    margin-top: 25px;
+    border: none;
+}
+
+#fila{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+.form-control{
+    border-radius: 30px;
+}
+
+#tbl{
+    width: 100%;
+    border: 1px solid #000;
+}
+
+#thc{
+    width: 25%;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #000;
+}
+
+#tdc{
+    width: 25%;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #000;
+}
