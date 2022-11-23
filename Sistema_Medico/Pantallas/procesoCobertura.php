@@ -1,4 +1,14 @@
+<?php
+include("../DATABASE/db.php");
+
+$query = "SELECT * FROM procedimientos";
+$result = mysqli_query($conn, $query);
+?>
+
+
+
 <?php include("../includes/header.php") ?>
+
 
 <div class="container"> 
     <div class="row">
@@ -46,107 +56,187 @@
                         </div>                            
                     </div>             
 
-                   
 
-                <div class="col-4">
-                    <div class="panel-body">
-                        <label for="ars" class="form-label">ARS</label>
-                        <input name="ars" type="text" class="form-control" id="ars" placeholder="Nombre De ARS">
-                    </div>                            
-                </div> 
+                    <div class="col-4">
+                        <div class="panel-body">
+                            <label for="ars" class="form-label">ARS</label>
+                            <input name="ars" type="text" class="form-control" id="ars" placeholder="Nombre De ARS">
+                        </div>                            
+                    </div> 
 
-                <div class="col-4">
-                    <div class="panel-body">
-                        <label for="numars" class="form-label">Numero De Afiliado</label>
-                        <input name="numars" type="text" class="form-control" id="numars" placeholder="Numero Afiliado">
-                    </div>                            
-                </div>  
+                    <div class="col-4">
+                        <div class="panel-body">
+                            <label for="numars" class="form-label">Numero De Afiliado</label>
+                            <input name="numars" type="text" class="form-control" id="numars" placeholder="Numero Afiliado">
+                        </div>                            
+                    </div>  
 
-                <div class="col-4">
-                    <div class="panel-body">
-                        <label for="direccion" class="form-label">Direccion</label>
-                        <input name="direccion" type="text" class="form-control" id="direccion" placeholder="Direccion Completa" required>
-                    </div>                            
-                </div>   
+                    <div class="col-4">
+                        <div class="panel-body">
+                            <label for="direccion" class="form-label">Direccion</label>
+                            <input name="direccion" type="text" class="form-control" id="direccion" placeholder="Direccion Completa" required>
+                        </div>                            
+                    </div>   
 
+                    <div class="col-md-4 position-relative">
+                        <label for="procedimiento" class="form-label">
+                            <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Procedimiento</font>
+                            </font>
+                        </label>
+                        <select name="procedimiento" class="form-select" id="procedimiento" onChange="buscar_precio();" required>
+                            <option selected="" disabled="" value="">
+                            <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Elegir</font>
+                            </font>
+                            </option>
+                            <?php foreach ($result as $opciones) : ?>
+                                <option value="<?php echo $opciones['id_proc'] ?>"><?php echo $opciones['nombre_proc'] ?></option>
+                            <?php endforeach ?>
+                        </select>
+                        <div class="valid-tooltip">
+                            <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">
+                            </font>
+                            </font>
+                        </div>
+                    </div> 
 
-                <div class="col-md-4">
-                    <div class="panel-body">
-                        <label><input type="checkbox" id="status" value="first_checkbox"> Status</label><br>
-                    </div>                            
-                </div>    
+                    <div class="col-4">
+                        <div class="panel-body">
+                            <label for="precio" class="form-label">Precio</label>
+                            <input name="precio" type="text" class="form-control" id="precio" placeholder="PRECIO" required>
+                        </div>                            
+                    </div>   
 
-                <div class="row" id="divbutn">
-                    <div class="col-md-12">
-                        <button name="btn_enviar" class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Registrar</font></font></button>
-                        <!--                        <button name="btn_consultar" class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Consultar</font></font></button>
-                                               <button name="btn_cancelar" class="btn btn-primary" type="submit" ><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a id="btmod" href="Pro_modificar.php" target="_blank">Cancelar</a></font></font></button>-->
+                    <div class="col-4">
+                        <div class="panel-body">
+                            <label for="cob_solicitado" class="form-label">Cobertura Solicitada</label>
+                            <input name="cob_solicitado" type="text" class="form-control" id="cob_solicitado" placeholder="PROCEDIMIENTO" required>
+                        </div>                            
+                    </div>   
+
+                    <!--                    <div class="col-4">
+                                            <div class="panel-body">
+                                                <label for="num_autorizacion" class="form-label">#_Autorizacion</label>
+                                                <input name="num_autorizacion" type="text" class="form-control" id="num_autorizacion" placeholder="#_AUTORIZACION" required>
+                                            </div>                            
+                                        </div>   -->
+
+                    <div class="col-md-4">
+                        <div class="panel-body">
+                            <label><input type="checkbox" id="status" value="first_checkbox"> Status</label><br>
+                        </div>                            
+                    </div>    
+
+                    <div class="row" id="divbutn">
+                        <div class="col-md-12">
+                            <button name="btn_enviar" class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Registrar</font></font></button>
+                            <!--                        <button name="btn_consultar" class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Consultar</font></font></button>
+                                                   <button name="btn_cancelar" class="btn btn-primary" type="submit" ><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a id="btmod" href="Pro_modificar.php" target="_blank">Cancelar</a></font></font></button>-->
+                        </div>
                     </div>
+
+                    <input type="hidden" name="_next" value="http://localhost/consultorio/Mantenimientos/cobertura.php">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+
+                    </form >
+
+                    <div class="col-md-3">
+
+                    </div>
+
+
                 </div>
-
-                <input type="hidden" name="_next" value="http://localhost/consultorio/Mantenimientos/cobertura.php">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-
-            </form >
-
-            <div class="col-md-3">
-
-            </div>
-
-
         </div>
+
     </div>
 
-</div>
+    <script type="text/javascript">
 
-<script type="text/javascript">
+        function buscar_datos() {
+            cedula = $("#cedula").val();
 
-    function buscar_datos() {
-        cedula = $("#cedula").val();
-
-        var parametros =
-                {
-                    "buscar": "1",
-                    "cedula": cedula
-                };
-
-        $.ajax(
-                {
-                    data: parametros,
-                    dataType: 'json',
-                    url: '../Procesos/procesosCobertura.php',
-                    type: 'post',
-                    beforeSend: function ()
+            var parametros =
                     {
-                        alert("Enviando");
-                    },
-                    error: function ()
+                        "buscar": "1",
+                        "cedula": cedula
+                    };
+
+            $.ajax(
                     {
-                        alert("Error");
-                    },
-                    complete: function ()
+                        data: parametros,
+                        dataType: 'json',
+                        url: '../Procesos/procesosCobertura.php',
+                        type: 'post',
+                        beforeSend: function ()
+                        {
+                            alert("Enviando");
+                        },
+                        error: function ()
+                        {
+                            alert("Error");
+                        },
+                        complete: function ()
+                        {
+                            alert("¡Listo!" + valores.nombre);
+                        },
+                        success: function (valores)
+                        {
+                            $("#nombre").val(valores.nombre);
+                            $("#apellido").val(valores.apellido);
+                            $("#direccion").val(valores.direccion);
+                            $("#num_telefono").val(valores.num_telefono);
+                            $("#email").val(valores.correo);
+                            $("#ars").val(valores.seguro);
+                            $("#numars").val(valores.nombre_aseguradora);
+
+                        }
+                    })
+        }
+
+    </script>
+
+
+    <script type="text/javascript">
+
+        function buscar_precio() {
+            procedimiento = $("#procedimiento").val();
+
+            var parametros =
                     {
-                        alert("¡Listo!"+valores.nombre);
-                    },
-                    success: function (valores)
+                        "busca": "1",
+                        "procedimiento": procedimiento
+                    };
+
+            $.ajax(
                     {
-                        $("#nombre").val(valores.nombre);
-                        $("#apellido").val(valores.apellido);
-                       // $("#sexo").val(valores.sexo);
-                        $("#direccion").val(valores.direccion);
-                      //  $("#celular").val(valores.celular);
-                        $("#num_telefono").val(valores.num_telefono);
-                        $("#email").val(valores.correo);
-                        $("#ars").val(valores.seguro);
-                        $("#numars").val(valores.nombre_aseguradora);
+                        data: parametros,
+                        dataType: 'json',
+                        url: '../Procesos/procesosCobertura.php',
+                        type: 'post',
+                        beforeSend: function ()
+                        {
+                            alert("Enviando");
+                        },
+                        error: function ()
+                        {
+                            alert("Error");
+                        },
+                        complete: function ()
+                        {
+                            alert("¡Listo!" + valores.nombre);
+                        },
+                        success: function (valores)
+                        {
+                            $("#precio").val(valores.precio);
+                        }
+                    })
+        }
 
-                    }
-                })
-    }
-
-</script>
+    </script>
 
 
 
-<?php include("../includes/footer.php") ?>
+    <?php include("../includes/footer.php") ?>

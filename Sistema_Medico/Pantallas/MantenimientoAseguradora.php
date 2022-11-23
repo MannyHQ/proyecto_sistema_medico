@@ -43,7 +43,7 @@ include("../DATABASE/db.php");
                                 <font style="vertical-align: inherit;">Direccion</font>
                             </font>
                         </label>
-                        <input name="direccion" type="text" class="form-control" id="direccion" minlength="11" maxlength="13" required>
+                        <input name="direccion" type="text" class="form-control" id="direccion" minlength="11" maxlength="50" required>
                         <div class="valid-tooltip">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">

@@ -20,10 +20,13 @@ include("../includes/header.php");
                         <th id="thc">APELLIDO</th>
                         <th id="thc">EMAIL</th>
                         <th id="thc">TELEFONO</th>	
-                        <th id="thc">CELULAR</th>
-                        <th id="thc">ARS</th>
                         <th id="thc">NUMERO_ARS</th>
+                        <th id="thc">ARS</th>
                         <th id="thc">DIRECCION</th>
+                        <th id="thc">PROCEDIMIENTO</th>
+                        <th id="thc">PRECIO</th>
+                        <th id="thc">COB_SOLICITADA</th>
+                        <th id="thc">#_AUTORIZACION</th>
 
                     </tr>
 
@@ -41,7 +44,11 @@ include("../includes/header.php");
                         <input name="telefono" type="hidden" class="form-control" id="telefono" value="<?php echo $mostrar['telefono'] ?>" placeholder="recibi" >
                         <input name="ars" type="hidden" class="form-control" id="ars" value="<?php echo $mostrar['ars'] ?>" placeholder="recibi" >
                         <input name="num_ars" type="hidden" class="form-control" id="num_ars" value="<?php echo $mostrar['num_ars'] ?>" placeholder="recibi" >
-                        <input name="direccion" type="hidden" class="form-control" id="direccion" value="<?php echo $mostrar['direccion'] ?>" placeholder="recibi" >
+                        <input name="procedimiento" type="hidden" class="form-control" id="procedimiento" value="<?php echo $mostrar['procedimiento'] ?>" placeholder="recibi" >
+                        <input name="precio" type="hidden" class="form-control" id="precio" value="<?php echo $mostrar['precio'] ?>" placeholder="recibi" >
+                        <input name="cob_solicitado" type="hidden" class="form-control" id="cob_solicitado" value="<?php echo $mostrar['cob_solicitado'] ?>" placeholder="recibi" >
+                        <input name="num_autorizacion" type="hidden" class="form-control" id="num_autorizacion" value="<?php echo $mostrar['num_autorizacion'] ?>" placeholder="recibi" >
+
                         <tr>
                             <td id="tdc"><?php echo $mostrar['cedula'] ?></td>
                             <td id="tdc"><?php echo $mostrar['nombre'] ?></td>
@@ -51,7 +58,12 @@ include("../includes/header.php");
                             <td id="tdc"><?php echo $mostrar['ars'] ?></td>
                             <td id="tdc"><?php echo $mostrar['num_ars'] ?></td>
                             <td id="tdc"><?php echo $mostrar['direccion'] ?></td>
+                            <td id="tdc"><?php echo $mostrar['procedimiento'] ?></td>
+                            <td id="tdc"><?php echo $mostrar['precio'] ?></td>
+                            <td id="tdc"><?php echo $mostrar['cob_solicitado'] ?></td>
+                            <td id="tdc"><?php echo $mostrar['num_autorizacion'] ?></td>
                         </tr>
+                        
                         <?php
                     }
                     ?>

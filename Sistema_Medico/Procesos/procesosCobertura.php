@@ -39,6 +39,45 @@ if (isset($_POST['buscar'])) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
+if (isset($_POST['busca'])) {
+    $procedimiento = $_POST['procedimiento'];
+    $valores = array();
+    $valores['existe'] = "0";
+
+     //$resultados = mysqli_query($conn, "SELECT * FROM paciente WHERE cedula = '$cedula' ");
+    $resultados = mysqli_query($conn, "SELECT precio_proc FROM procedimientos  WHERE id_proc = $procedimiento;");
+    //$resultados = mysqli_query($conex, "SELECT * FROM paciente p, paciente_vs_telefono pt, paciente_vs_correo pc WHERE p.cedula ='$cedula' AND pt.id_paciente ='$cedula' AND pc.id_paciente ='$cedula'");
+    while ($consulta = mysqli_fetch_array($resultados)) {
+        $valores['existe'] = "1";
+        $valores['precio'] = $consulta['precio_proc'];
+//        $valores['apellido'] = $consulta['apellido'];
+//        $valores['correo'] = $consulta['correo'];
+//        $valores['num_telefono'] = $consulta['num_telefono'];
+//       // $valores['sexo'] = $consulta['sexo'];
+//       // $valores['fecha'] = $consulta['fecha_naci'];
+//       // $valores['cedula'] = $consulta['cedula'];
+//        $valores['seguro'] = $consulta['seguro'];
+//        $valores['nombre_aseguradora'] = $consulta['nombre_aseguradora'];
+//        $valores['direccion'] = $consulta['direccion'];
+       // $valores['tipo_sangre'] = $consulta['tipo_sangre'];
+       // $valores['status'] = $consulta['status'];
+        //$valores['celular'] = $consulta['celular'];
+       
+    }
+    $valores = json_encode($valores);
+    echo $valores;
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+
+
+
+
+
+
+
+
 if (isset($_POST['buscar2'])) {
     $cedula = $_POST['cedula'];
     $valores2 = array();

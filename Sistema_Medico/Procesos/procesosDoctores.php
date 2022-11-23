@@ -10,7 +10,7 @@
         $cedula = $_POST['cedula'];
         $especialidades = $_POST['especialidad'];
         $horario = $_POST['horario'];
-        
+
         if (isset($_POST['ESTADO']) == '1'){
             $ESTADO = TRUE;
 
