@@ -19,7 +19,7 @@ if (isset($_POST['agregarPaciente'])) {
     } else {
         $ESTADO = FALSE;
     }
-    $query = "INSERT INTO paciente(nombre, apellido, sexo, fecha_naci, cedula, seguro, direccion ,tipo_sangre, status) VALUES ('$nombre','$apellido', '$sexo','$fecha_nacimiento','$cedula','$afiliado','$direccion','$tipo_sangre','$ESTADO')";
+    $query = "INSERT INTO paciente(nombre, apellido, sexo, fecha_naci, cedula, seguro, direccion ,tipo_sangre, status_paciente) VALUES ('$nombre','$apellido', '$sexo','$fecha_nacimiento','$cedula','$afiliado','$direccion','$tipo_sangre','$ESTADO')";
     $result = mysqli_query($conn, $query);
     if (!$result) {
         die("Querry Failed");
@@ -54,7 +54,18 @@ if (isset($_POST['agregarPaciente'])) {
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-    $conpsc_vs_email = "INSERT INTO paciente_vs_correo(id_paciente,id_correo)  VALUES ('$cedula','$email')";
+    $valor_correoquery =  'SELECT  * FROM correo ORDER by id_correo DESC LIMIT 1';
+    $valor_correo = mysqli_query($conn, $valor_correoquery);
+
+    if (!$valor_correo) {
+        die("Querry Failed");
+    }
+    $row = mysqli_fetch_array($valor_correo);
+    $valor_correos =  $row['id_correo'];
+
+    //---------------------------------------------------------------------------------------------------------------
+    
+    $conpsc_vs_email = "INSERT INTO paciente_vs_correo(id_paciente,id_correo)  VALUES ('$cedula','$valor_correos')";
 
     $resultado5 = mysqli_query($conn, $conpsc_vs_email);
     if (!$resultado5) {

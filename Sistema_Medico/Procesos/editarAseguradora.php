@@ -34,7 +34,7 @@ if (isset($_POST['update'])) {
     }
 
 
-    $query = "UPDATE aseguradora set nombre = '$NOMBRE', direccion = '$DIRECCION', STATUS = '$ESTADO', correo = '$CORREO', telefono =  '$TELEFONO'
+    $query = "UPDATE aseguradora set nombre_aseguradora = '$NOMBRE', direccion_aseguradora = '$DIRECCION', STATUS = '$ESTADO', correo_aseguradora = '$CORREO', telefono =  '$TELEFONO'
     where id_aseguradora = $ID_ASEGURADORA";
     mysqli_query($conn, $query);
 

@@ -1,8 +1,22 @@
+<?php
+  session_start();
+  error_reporting(0);
+
+  $validar = $_SESSION['user'];
+  if($validar == NULL || $validar = ""){
+    header("Location: ../Pantallas/Login.php");
+    die();
+  }
+  
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -26,7 +40,7 @@
                   Procesos
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Registro de consulta</a></li>
+                  <li><a class="dropdown-item" href="../Pantallas/Facturacion.php">Facturacion</a></li>
                   <li><a class="dropdown-item" href="../Pantallas/procesoCobertura.php">Cobertura</a></li>
                   
                 </ul>
@@ -71,6 +85,8 @@
               
             </form>
           </div>
-          <button class="btn btn-outline-success" type="submit">Usuario</button>
+          <button class="btn btn-outline-success" type="submit" ><?php $_SESSION['user'] ?></button>
+          <a href="../DATABASE/cerrarSesion.php">Cerrar Sesión</a>
+          
         </div>
       </nav>

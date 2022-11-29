@@ -75,7 +75,7 @@ include("../DATABASE/db.php");
                                 <font style="vertical-align: inherit;">Status</font>
                             </font>
                         </label>
-                        <input class="form-group-input" name='ESTADO' type="checkbox" id="ESTADO">
+                        <input class="form-group-input" checked name='ESTADO' type="checkbox" id="ESTADO">
                         <div class="invalid-tooltip">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">

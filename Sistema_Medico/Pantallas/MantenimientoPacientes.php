@@ -236,7 +236,7 @@ $result = mysqli_query($conn, $query);
                                 <font style="vertical-align: inherit;">Status</font>
                             </font>
                         </label>
-                        <input class="form-group-input" name='ESTADO' type="checkbox" id="status">
+                        <input class="form-group-input" checked name='ESTADO' type="checkbox" id="status">
                         <div class="invalid-tooltip">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">
@@ -288,8 +288,8 @@ $result = mysqli_query($conn, $query);
                                 <th>CEDULA</th>
                                 <th>CORREO</th>
                                 <th>TELEFONO</th>
-                                <th>SEGURO</th>
-                                <th>No Seguro</th>
+                                <th>No. Seguro</th>
+                                <th>ASEGURADORA</th>
                                 <th>NACIMIENTO</th>
                                 <th>DIRECCION</th>
                                 <th>SANGRE</th>

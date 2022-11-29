@@ -8,16 +8,24 @@ $resultado = mysqli_query($conn, $query);
 if (isset($_GET['ID_DOCTOR'])) {
     $ID_DOCTOR = $_GET['ID_DOCTOR'];
 
-    $query = "SELECT * FROM doctor where id_doctor = $ID_DOCTOR";
+    $query = "SELECT doctor.id_doctor,nombre,sexo,direccion,exequatur,cedula,especialidades,horario, correo, num_telefono,doctor.status FROM doctor                        
+    CROSS JOIN correo                           
+    CROSS JOIN doctor_vs_correo ON doctor.cedula = doctor_vs_correo.id_doctor
+    CROSS JOIN doctor_vs_telefono ON doctor.cedula = doctor_vs_telefono.id_doctor
+    WHERE correo.id_correo = doctor_vs_correo.id_correo and doctor.id_doctor = $ID_DOCTOR";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
+        $correo = $row['correo'];
+        $TELEFONO = $row['num_telefono'];
+
         $NOMBRE = $row['nombre'];
         $SEXO = $row['sexo'];
         $DIRECCION = $row['direccion'];
         $EXEQUATUR = $row['exequatur'];
         $CEDULA = $row['cedula'];
+        $CEDULA_AYUDA = $CEDULA;
         $ESPECIALIDADES = $row['especialidades'];
         $HORARIO = $row['horario'];
         $ESTADO = $row['status'];
@@ -28,6 +36,8 @@ if (isset($_GET['ID_DOCTOR'])) {
 if (isset($_POST['update'])) {
     $ID_DOCTOR = $_GET['ID_DOCTOR'];
     $NOMBRE = $_POST['nombre'];
+    $TELEFONO = $_POST['telefono'];
+    $CORREO = $_POST['email'];
     $SEXO = $_POST['sexo'];
     $DIRECCION = $_POST['direccion'];
     $EXEQUATUR = $_POST['exequatur'];
@@ -41,9 +51,40 @@ if (isset($_POST['update'])) {
     }
 
 
-    $query = "UPDATE doctor set nombre = '$NOMBRE', direccion = '$DIRECCION', STATUS = '$ESTADO', sexo = '$SEXO', exequatur = '$EXEQUATUR', especialidades ='$ESPECIALIDADES', horario = '$HORARIO'
+    $query = "UPDATE doctor set nombre = '$NOMBRE',cedula= $CEDULA, direccion = '$DIRECCION', STATUS = '$ESTADO', sexo = '$SEXO', exequatur = '$EXEQUATUR', especialidades ='$ESPECIALIDADES', horario = '$HORARIO'
     where id_doctor = $ID_DOCTOR";
     mysqli_query($conn, $query);
+
+    $query = "UPDATE telefono set num_telefono = '$TELEFONO' WHERE id_tel = '$ID_DOCTOR'";
+    mysqli_query($conn, $query);
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    $query = "UPDATE doctor_vs_telefono SET id_doctor = '$CEDULA', num_telefono = '$TELEFONO' WHERE id_doctor = '$CEDULA_AYUDA'";
+    mysqli_query($conn, $query);
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    $query = "UPDATE telefono set num_telefono = '$TELEFONO' WHERE id_tel = '$ID_DOCTOR'";
+    mysqli_query($conn, $query);
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    $query2 = "SELECT * from doctor_vs_correo WHERE id_doctor = $CEDULA_AYUDA";
+    $valor_correo = mysqli_query($conn, $query2);
+    $row = mysqli_fetch_array($valor_correo);
+    $valor_doctor =  $row['id_correo'];
+
+
+    $query = "UPDATE correo SET correo = '$CORREO' WHERE id_correo = $valor_doctor";
+    mysqli_query($conn, $query);
+
+     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     $query = "UPDATE doctor_vs_correo SET id_doctor = '$CEDULA' WHERE id_doctor = '$CEDULA_AYUDA'";
+     mysqli_query($conn, $query);
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      
+
 
     $_SESSION['message'] = 'Doctor actualizado satisfactoriamente';
     $_SESSION['message_type'] = 'info';
@@ -99,7 +140,7 @@ if (isset($_POST['update'])) {
                         <font style="vertical-align: inherit;">Email</font>
                     </font>
                 </label>
-                <input name="email"  type="text" class="form-control" id="validationTooltip02" required="">
+                <input name="email" value="<?php echo $correo; ?>"  type="text" class="form-control" id="validationTooltip02" required="">
                 <div class="valid-tooltip">
                     <font style="vertical-align: inherit;">
                         <font style="vertical-align: inherit;">
@@ -114,7 +155,7 @@ if (isset($_POST['update'])) {
                         <font style="vertical-align: inherit;">Telefono</font>
                     </font>
                 </label>
-                <input name="telefono" type="text" class="form-control" minlength="3" maxlength="40">
+                <input name="telefono" value="<?php echo $TELEFONO; ?>" type="text" class="form-control" minlength="3" maxlength="40">
                 <div class="valid-tooltip">
                     <font style="vertical-align: inherit;">
                         <font style="vertical-align: inherit;">
@@ -122,21 +163,7 @@ if (isset($_POST['update'])) {
                     </font>
                 </div>
             </div>
-            <!--CELULAR-->
-            <div class="col-md-4 position-relative">
-                <label for="validationTooltip02" class="form-label">
-                    <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Celular</font>
-                    </font>
-                </label>
-                <input name="celular" type="text" class="form-control" id="validationTooltip02" minlength="10" maxlength="15" required="">
-                <div class="valid-tooltip">
-                    <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">
-                        </font>
-                    </font>
-                </div>
-            </div>
+            
             <!--EXAQUATUR-->
             <div class="col-md-3 position-relative">
                 <label for="" class="form-label">
@@ -196,7 +223,7 @@ if (isset($_POST['update'])) {
                         <font style="vertical-align: inherit;">Especialidades</font>
                     </font>
                 </label>
-                <textarea name="especialidad" value="<?php echo $ESPECIALIDADES; ?>" type="text" class="form-control" id="especialidad" required=""></textarea>
+                <input name="especialidad" value="<?php echo $ESPECIALIDADES; ?>" type="text" class="form-control" id="direccion" required="">
                 <div class="invalid-tooltip">
                     <font style="vertical-align: inherit;">
                         <font style="vertical-align: inherit;">
@@ -206,27 +233,26 @@ if (isset($_POST['update'])) {
             </div>
             <!--SEXO-->
             <div class="col-md-3 position-relative">
-                <label for="" class="form-label">
+                <label for="sexo" class="form-label">
                     <font style="vertical-align: inherit;">
                         <font style="vertical-align: inherit;">Sexo</font>
                     </font>
                 </label>
-                <select name="sexo" value="<?php echo $SEXO; ?>" class="form-select" id="sexo" required="">
-                    <option selected="" disabled="" value="">
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Elegir</font>
-                        </font>
-                    </option>
-                    <option>
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Masculino</font>
-                        </font>
-                    </option>
-                    <option>
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Femenino</font>
-                        </font>
-                    </option>
+                <select class="form-select" name="sexo" aria-label="Default select example">
+                    <?php
+                    if ($SEXO == 'M') { ?>
+                        <option selected value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    <?php
+                    }
+                    ?>
+                    <?php
+                    if ($SEXO == 'F') { ?>
+                        <option value="M">Masculino</option>
+                        <option selected value="F">Femenino</option>
+                    <?php
+                    }
+                    ?>
                 </select>
                 <div class="invalid-tooltip">
                     <font style="vertical-align: inherit;">

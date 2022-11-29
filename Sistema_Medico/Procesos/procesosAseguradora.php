@@ -15,7 +15,7 @@ if (isset($_POST['agregarAseguradora'])) {
 
 
 
-    $query = "INSERT INTO aseguradora(nombre, direccion, correo,telefono,status ) VALUES ('$nombre', '$direccion','$correo','$telefono','$ESTADO')";
+    $query = "INSERT INTO aseguradora(nombre_aseguradora, direccion_aseguradora, correo_aseguradora,telefono,status ) VALUES ('$nombre', '$direccion','$correo','$telefono','$ESTADO')";
     $result = mysqli_query($conn, $query);
     if (!$result) {
         die("Querry Failed");

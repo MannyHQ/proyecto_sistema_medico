@@ -102,7 +102,7 @@ $result = mysqli_query($conn, $query);
                         <select name="tipo_usuario" class="form-select" id="tipo_usuario" required="">
                             <?php foreach ($result as $opciones) : ?>
 
-                                <option value="<?php echo $opciones['nombre_tipo'] ?>"><?php echo $opciones['nombre_tipo'] ?></option>
+                                <option value="<?php echo $opciones['id_tipo'] ?>"><?php echo $opciones['nombre_tipo'] ?></option>
 
                             <?php endforeach ?>
                         </select>
@@ -120,7 +120,7 @@ $result = mysqli_query($conn, $query);
                                 <font style="vertical-align: inherit;">Status</font>
                             </font>
                         </label>
-                        <input class="form-group-input" name='ESTADO' type="checkbox" id="flexCheckDefault">
+                        <input class="form-group-input" checked name='ESTADO' type="checkbox" id="flexCheckDefault">
                         <div class="invalid-tooltip">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">

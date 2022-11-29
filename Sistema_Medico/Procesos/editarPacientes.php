@@ -4,25 +4,42 @@
 $query = "SELECT * FROM aseguradora";
 $resultado = mysqli_query($conn, $query);
 
+
+
 //Para traer el dato seleccionado a la pantala de actualizar
 if (isset($_GET['ID_PACIENTE'])) {
     $ID_PACIENTE = $_GET['ID_PACIENTE'];
 
-    $query = "SELECT * FROM paciente where id_paciente = $ID_PACIENTE" ;
+    $query = "SELECT paciente.id_paciente,aseguradora.id_aseguradora,nombre,apellido, correo,tipo_sangre,status_paciente, num_telefono,seguro,direccion,sexo,cedula,
+    fecha_naci,nombre_aseguradora FROM paciente
+    CROSS JOIN aseguradora
+    CROSS JOIN correo
+    CROSS JOIN paciente_vs_aseguradora ON paciente.cedula = paciente_vs_aseguradora.id_paciente
+    CROSS JOIN paciente_vs_correo ON paciente.cedula = paciente_vs_correo.id_paciente
+    CROSS JOIN paciente_vs_telefono ON paciente.cedula = paciente_vs_telefono.id_paciente
+    WHERE aseguradora.id_aseguradora = paciente_vs_aseguradora.id_aseguradora AND correo.id_correo = paciente_vs_correo.id_correo
+     and paciente.id_paciente = $ID_PACIENTE;" ;
+
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
-        $NOMBRE = $row['nombre'];
+        $NOMBRE = $row['nombre'] ;
         $APELLIDO = $row['apellido'];
-        $SEXO = $row['sexo'];
-        $FECHA = $row['fecha_naci'];
-        $CEDULA = $row['cedula'];
-        $SEGURO = $row['seguro'];
-        $DIRECCION = $row['direccion'];
+        $CORREO = $row['correo'];
         $SANGRE = $row['tipo_sangre'];
-        //$TELEFONO = $row['telefono'];
-        $ESTADO = $row['status'];
+        $ESTADO =  $row['status_paciente'];
+        $TELEFONO = $row['num_telefono'];
+        $NO_SEGURO = $row['seguro'];
+        $DIRECCION = $row['direccion'];
+        $SEXO = $row['sexo'];
+        $CEDULA = $row['cedula'];
+        $CEDULA_AYUDA = $CEDULA;
+        $ANTIGUA_CEDULA = $CEDULA;
+        $FECHA = $row['fecha_naci'];
+        $SEGURO = $row['nombre_aseguradora'];
+        $ID_ASEGURADORA = $row['id_aseguradora'];
+           
     }
 }
 
@@ -31,23 +48,58 @@ if (isset($_POST['update'])) {
     $ID_PACIENTE = $_GET['ID_PACIENTE'];
     $NOMBRE = $_POST['nombre'];
     $APELLIDO = $_POST['apellido'];
+    $CORREO = $_POST['correo'];
     $SEXO = $_POST['sexo'];
     $FECHA = $_POST['fecha_nacimiento'];
     $CEDULA = $_POST['cedula'];
+    $NO_SEGURO = $_POST['no_seguro'];
     $SEGURO = $_POST['seguro'];
     $DIRECCION = $_POST['direccion'];
     $SANGRE = $_POST['tipo_sangre'];
-   // $TELEFONO = $_POST['telefono'];
+    $TELEFONO = $_POST['telefono'];
     if (isset($_POST['ESTADO']) == '1') {
         $ESTADO = TRUE;
     } else {
         $ESTADO = FALSE;
     }
 
+    ///////////////////////////////////
+    $query = "UPDATE paciente set nombre = '$NOMBRE', apellido ='$APELLIDO', direccion = '$DIRECCION', STATUS_PACIENTE = '$ESTADO', sexo = '$SEXO',
+    fecha_naci = '$FECHA', cedula ='$CEDULA', seguro = '$NO_SEGURO', tipo_sangre = '$SANGRE' where id_paciente = '$ID_PACIENTE'";
 
-    $query = "UPDATE paciente set nombre = '$NOMBRE', direccion = '$DIRECCION', STATUS = '$ESTADO', sexo = '$SEXO', fecha_naci = '$FECHA', cedula ='$CEDULA', seguro = '$SEGURO', tipo_sangre = '$SANGRE'
-    where id_paciente = $ID_PACIENTE";
     mysqli_query($conn, $query);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    $query = "UPDATE telefono set num_telefono = '$TELEFONO' WHERE id_tel = '$ID_PACIENTE'";
+    mysqli_query($conn, $query);
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    $query = "UPDATE paciente_vs_telefono SET id_paciente = '$CEDULA', num_telefono = '$TELEFONO' WHERE id_paciente = '$ANTIGUA_CEDULA'";
+    mysqli_query($conn, $query);
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    $query = "UPDATE telefono set num_telefono = '$TELEFONO' WHERE id_tel = '$ID_PACIENTE'";
+    mysqli_query($conn, $query);
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    $query2 = "SELECT * from paciente_vs_correo WHERE id_paciente = $CEDULA_AYUDA";
+    $valor_correo = mysqli_query($conn, $query2);
+    $row = mysqli_fetch_array($valor_correo);
+    $valor_paciente =  $row['id_correo'];
+    
+
+    $query = "UPDATE correo SET correo = '$CORREO' WHERE id_correo = '$valor_paciente'";
+    mysqli_query($conn, $query);
+
+     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     $query = "UPDATE paciente_vs_correo SET id_paciente = '$CEDULA' WHERE id_paciente = '$ANTIGUA_CEDULA'";
+     mysqli_query($conn, $query);
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      $query = "UPDATE paciente_vs_aseguradora SET id_paciente = '$CEDULA', id_aseguradora = '$SEGURO' WHERE id_paciente = '$ANTIGUA_CEDULA'";
+      mysqli_query($conn, $query);
+
+
 
     $_SESSION['message'] = 'Paciente actualizado satisfactoriamente';
     $_SESSION['message_type'] = 'info';
@@ -95,6 +147,28 @@ if (isset($_POST['update'])) {
                             </font>
                         </div>
                     </div>
+                    <!--Correo-->
+                    <div class="col-md-5 position-relative">
+                        <label for="" class="form-label">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Correo</font>
+                            </font>
+                        </label>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text" id="validationTooltipUsernamePrepend">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">@</font>
+                                </font>
+                            </span>
+                            <input name="correo" value="<?php echo $CORREO; ?>" type="text" class="form-control" id="correo" aria-describedby="validationTooltipUsernamePrepend" required="">
+                            <div class="invalid-tooltip">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">
+                                    </font>
+                                </font>
+                            </div>
+                        </div>
+                    </div>
             <!--Fecha nacimiento-->
             <div class="col-md-4 position-relative">
                 <label for="fecha_nacimiento" class="form-label">
@@ -125,6 +199,22 @@ if (isset($_POST['update'])) {
                     </font>
                 </div>
             </div>
+            <!--No. Seguro-->
+            <div class="col-md-4 position-relative">
+            <label for="" class="form-label">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">No.Afiliado</font>
+                    </font>
+                </label>
+                <input name="no_seguro" value="<?php echo $NO_SEGURO; ?>" type="text" class="form-control" id="cedula" minlength="11" maxlength="13" required="">
+                <div class="valid-tooltip">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">
+                        </font>
+                    </font>
+                </div>
+            </div>
+
             <!--seguro-->
             <div class="col-md-4 position-relative">
                 <label for="seguro" class="form-label">
@@ -133,9 +223,9 @@ if (isset($_POST['update'])) {
                     </font>
                 </label>
                 <select name="seguro" class="form-select" id="seguro" required="">
-                    <option selected value="<?php echo $SEGURO ?>"> <?php echo $SEGURO ?> </option>
+                    <option selected value="<?php echo $ID_ASEGURADORA  ?>"> <?php echo $SEGURO ?> </option>
                     <?php foreach ($resultado as $opciones) : ?>
-                        <option value="<?php echo $opciones['nombre'] ?>"><?php echo $opciones['nombre'] ?></option>
+                        <option value="<?php echo $opciones['id_aseguradora'] ?>"><?php echo $opciones['nombre_aseguradora'] ?></option>
                     <?php endforeach ?>
                 </select>
                 <div class="valid-tooltip">

@@ -85,21 +85,6 @@ $result = mysqli_query($conn, $query);
               </font>
             </div>
           </div>
-          <!--CELULAR-->
-          <div class="col-md-4 position-relative">
-            <label for="validationTooltip02" class="form-label">
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Celular</font>
-              </font>
-            </label>
-            <input name="celular" type="text" class="form-control" id="validationTooltip02" minlength="10" maxlength="15" required="">
-            <div class="valid-tooltip">
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">
-                </font>
-              </font>
-            </div>
-          </div>
           <!--EXAQUATUR-->
           <div class="col-md-3 position-relative">
             <label for="" class="form-label">
@@ -205,7 +190,7 @@ $result = mysqli_query($conn, $query);
                 <font style="vertical-align: inherit;">Status</font>
               </font>
             </label>
-            <input class="form-group-input" name='ESTADO' type="checkbox" id="flexCheckDefault">
+            <input class="form-group-input" checked name='ESTADO' type="checkbox" id="flexCheckDefault">
             <div class="invalid-tooltip">
               <font style="vertical-align: inherit;">
                 <font style="vertical-align: inherit;">
@@ -277,13 +262,20 @@ $result = mysqli_query($conn, $query);
                 <th>CEDULA</th>
                 <th>ESPECIALIDADES</th>
                 <th>HORARIO</th>
+                <th>CORREO</th>
+                <th>TELEFONO</TH>
                 <th>STATUS</th>
                 <th>ACCIONES</th>
               </tr>
             </thead>
             <tbody>
               <?php
-              $query = "select * from doctor $where";
+          
+              $query = "SELECT doctor.id_doctor,nombre,sexo,direccion,exequatur,cedula,especialidades,horario, correo, num_telefono,doctor.status FROM doctor                        
+              CROSS JOIN correo                           
+              CROSS JOIN doctor_vs_correo ON doctor.cedula = doctor_vs_correo.id_doctor
+              CROSS JOIN doctor_vs_telefono ON doctor.cedula = doctor_vs_telefono.id_doctor
+              WHERE correo.id_correo = doctor_vs_correo.id_correo";
               $result_tasks = mysqli_query($conn, $query);
 
               while ($row = mysqli_fetch_array($result_tasks)) { ?>
@@ -296,6 +288,8 @@ $result = mysqli_query($conn, $query);
                   <td><?php echo $row['cedula'] ?></td>
                   <td><?php echo $row['especialidades'] ?></td>
                   <td><?php echo $row['horario'] ?></td>
+                  <td><?php echo $row['correo'] ?></td>
+                  <td><?php echo $row['num_telefono'] ?></td>
                   <td><?php if ($row['status'] == '1') {
                         echo "ACTIVO";
                       } else {
