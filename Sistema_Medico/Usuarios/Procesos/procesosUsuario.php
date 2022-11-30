@@ -8,15 +8,6 @@
         $nombre = $_POST['nombre'];
         $apellido = $_POST['apellido'];
         $TIPO_USUARIO = $_POST['tipo_usuario'];
-        if($TIPO_USUARIO == 'Administrador'){
-            $TIPO_USUARIO = '1';
-        } else if($TIPO_USUARIO == 'Doctor')
-        {
-            $TIPO_USUARIO = '2';
-        }  else if($TIPO_USUARIO == 'Empleado')
-        {
-            $TIPO_USUARIO = '3';
-        }
         if (isset($_POST['ESTADO']) == '1'){
             $ESTADO = TRUE;
 

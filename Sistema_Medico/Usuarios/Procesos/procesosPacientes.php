@@ -2,37 +2,30 @@
 
     include("../DATABASE/db.php");
     //Codigo para agregar en la base de datos
-    if(isset($_POST['agregarUsuario'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+    if(isset($_POST['agregarPaciente'])){
         $nombre = $_POST['nombre'];
-        $apellido = $_POST['apellido'];
-        $TIPO_USUARIO = $_POST['tipo_usuario'];
-        if($TIPO_USUARIO == 'Administrador'){
-            $TIPO_USUARIO = '1';
-        } else if($TIPO_USUARIO == 'Doctor')
-        {
-            $TIPO_USUARIO = '2';
-        }  else if($TIPO_USUARIO == 'Empleado')
-        {
-            $TIPO_USUARIO = '3';
-        }
+        $sexo = $_POST['sexo'];
+        $fecha_nacimiento = $_POST['fecha_nacimiento'];
+        $cedula = $_POST['cedula'];
+        $seguro = $_POST['seguro'];
+        $direccion = $_POST['direccion'];
+        $tipo_sangre = $_POST['tipo_sangre'];
         if (isset($_POST['ESTADO']) == '1'){
             $ESTADO = TRUE;
 
         }else{
             $ESTADO = FALSE;
         }
-        $query = "INSERT INTO usuario(username, password, nombre, apellido,hora_entrada, tipo_user,status) VALUES ('$username', '$password','$nombre','$apellido','5','$TIPO_USUARIO','$ESTADO')";
+        $query = "INSERT INTO paciente(nombre, sexo, fecha_naci, cedula, seguro, direccion ,tipo_sangre, status) VALUES ('$nombre', '$sexo','$fecha_nacimiento','$cedula','$seguro','$direccion','$tipo_sangre','$ESTADO')";
         $result = mysqli_query($conn, $query);
         if(!$result){
              die("Querry Failed");
         }
         
-        $_SESSION['message'] = 'Usuario guardado exitosamente';
+        $_SESSION['message'] = 'Paciente guardado exitosamente';
         $_SESSION['message_type'] = 'success';
 
-        header("Location: ../Pantallas/MantenimientoUsuario.php");
+        header("Location: ../Pantallas/MantenimientoPacientes.php");
 
     }
     // Para eliminar

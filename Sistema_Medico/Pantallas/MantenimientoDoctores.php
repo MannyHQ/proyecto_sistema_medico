@@ -23,7 +23,7 @@ $result = mysqli_query($conn, $query);
     <div class="col-md-6 shadow-lg p-2 mb-5 bg-light  rounded">
       <h1 class="p-3 text-left ">Mantenimiento de Doctores</h1>
       <div class="p-4">
-        <form name="formulario" action="../Procesos/procesosDoctores.php" method="POST" class="row g-3 needs-validation was-validated" novalidate="">
+        <form name="formulario" action="../Procesos/procesosDoctores.php" method="POST" class="row g-3 needs-validation was-validated" >
           <!--NOMBRE-->
           <div class="col-md-4 position-relative">
             <label for="validationTooltip01" class="form-label">
@@ -31,7 +31,7 @@ $result = mysqli_query($conn, $query);
                 <font style="vertical-align: inherit;">Nombre</font>
               </font>
             </label>
-            <input name="nombre" type="text" class="form-control" id="validationTooltip01" minlength="3" maxlength="40" required="">
+            <input name="nombre" type="text" class="form-control" id="validationTooltip01" minlength="3" maxlength="40" required>
             <div class="valid-tooltip">
               <font style="vertical-align: inherit;">
                 <font style="vertical-align: inherit;">
@@ -47,7 +47,7 @@ $result = mysqli_query($conn, $query);
                 <font style="vertical-align: inherit;">Cedula</font>
               </font>
             </label>
-            <input name="cedula" type="text" ondblclick="Doble_Clic(this.value)" class="form-control" id="validationTooltip02" minlength="11" maxlength="13" required="">
+            <input name="cedula" onblur="buscar_doctor();" type="text"  class="form-control" id="cedula" minlength="11" maxlength="13" >
             <div class="valid-tooltip">
               <font style="vertical-align: inherit;">
                 <font style="vertical-align: inherit;">
@@ -62,7 +62,7 @@ $result = mysqli_query($conn, $query);
                 <font style="vertical-align: inherit;">Email</font>
               </font>
             </label>
-            <input name="email" type="text" class="form-control" id="validationTooltip02" required="">
+            <input name="email" type="text" class="form-control" id="email">
             <div class="valid-tooltip">
               <font style="vertical-align: inherit;">
                 <font style="vertical-align: inherit;">
@@ -77,7 +77,7 @@ $result = mysqli_query($conn, $query);
                 <font style="vertical-align: inherit;">Telefono</font>
               </font>
             </label>
-            <input name="telefono" type="text" class="form-control" minlength="3" maxlength="40">
+            <input name="telefono" type="text" class="form-control" minlength="3" maxlength="40" required>
             <div class="valid-tooltip">
               <font style="vertical-align: inherit;">
                 <font style="vertical-align: inherit;">
@@ -92,7 +92,7 @@ $result = mysqli_query($conn, $query);
                 <font style="vertical-align: inherit;">Exaquatur</font>
               </font>
             </label>
-            <input name="exequatur" type="text" class="form-control" id="exequatur" required="">
+            <input name="exequatur" type="text" class="form-control" id="exequatur" required>
             <div class="valid-tooltip">
               <font style="vertical-align: inherit;">
                 <font style="vertical-align: inherit;">
@@ -107,7 +107,7 @@ $result = mysqli_query($conn, $query);
                 <font style="vertical-align: inherit;">Direccion</font>
               </font>
             </label>
-            <input name="direccion" type="text" class="form-control" id="direccion" required="">
+            <input name="direccion" type="text" class="form-control" id="direccion" required>
             <div class="valid-tooltip">
               <font style="vertical-align: inherit;">
                 <font style="vertical-align: inherit;">
@@ -119,22 +119,17 @@ $result = mysqli_query($conn, $query);
           <div class="col-md-3 position-relative">
             <label for="" class="form-label">
               <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Usuario</font>
+                <font style="vertical-align: inherit;"></font>
               </font>
             </label>
             <div class="input-group has-validation">
               <span class="input-group-text" id="validationTooltipUsernamePrepend">
                 <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">@</font>
+                  <font style="vertical-align: inherit;"></font>
                 </font>
               </span>
-              <input name="usuario" type="text" class="form-control" id="usuario" aria-describedby="validationTooltipUsernamePrepend" required="">
-              <div class="invalid-tooltip">
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">
-                  </font>
-                </font>
-              </div>
+              <input name="usuario" type="hidden" class="form-control" id="usuario"  aria-describedby="validationTooltipUsernamePrepend" required>
+              
             </div>
             <!--ESPECIALIDAD-->
           </div>
@@ -144,7 +139,7 @@ $result = mysqli_query($conn, $query);
                 <font style="vertical-align: inherit;">Especialidades</font>
               </font>
             </label>
-            <textarea name="especialidad" type="text" class="form-control" id="especialidad" required=""></textarea>
+            <textarea name="especialidad" type="text" class="form-control" id="especialidad" required></textarea>
             <div class="invalid-tooltip">
               <font style="vertical-align: inherit;">
                 <font style="vertical-align: inherit;">
@@ -159,7 +154,7 @@ $result = mysqli_query($conn, $query);
                 <font style="vertical-align: inherit;">Sexo</font>
               </font>
             </label>
-            <select name="sexo" class="form-select" id="sexo" required="">
+            <select name="sexo" class="form-select" id="sexo" required>
               <option selected="" disabled="" value="">
                 <font style="vertical-align: inherit;">
                   <font style="vertical-align: inherit;">Elegir</font>
@@ -314,5 +309,55 @@ $result = mysqli_query($conn, $query);
   </div>
 
 </div>
+
+<script type="text/javascript">
+
+    function buscar_doctor() {
+        cedula = $("#cedula").val();
+
+        var parametros =
+                {
+                    "buscando_doctor": "1",
+                    "cedula": cedula
+                };
+
+        $.ajax(
+                {
+                    data: parametros,
+                    dataType: 'json',
+                    url: '../Procesos/procesosCobertura.php',
+                    type: 'post',
+                    beforeSend: function ()
+                    {
+                          alert("Enviando");
+                    },
+                    error: function ()
+                    {
+                         alert("Error");
+                    },
+                    complete: function ()
+                    {
+                          // alert("Este Paciente Existe");
+                    },
+                    success: function (valores)
+                    {
+                        alert("Este Doctor Existe");
+                        $("#nombre").val(valores.nombre);
+                        $("#apellido").val(valores.apellido);
+                        $("#email").val(valores.email);
+                        $("#cedula").val(valores.cedula);
+
+                        /*
+                        
+                        $("#seguro").val(valores.seguro);
+                        $("#afiliado").val(valores.afiliado);
+                        $("#direccion").val(valores.direccion);
+                        $("#validationTooltip02").val(valores.telefono);
+                        $("#sexo").val(valores.sexo);
+                        */
+                    }
+                })
+    }
+    </script>
 
 <?php include("../includes/footer.php") ?>

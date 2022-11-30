@@ -7,7 +7,6 @@ if (isset($_POST['buscar'])) {
     $valores = array();
     $valores['existe'] = "0";
 
-     //$resultados = mysqli_query($conn, "SELECT * FROM paciente WHERE cedula = '$cedula' ");
     $resultados = mysqli_query($conn, "SELECT nombre,apellido, correo, num_telefono,seguro,direccion,sexo,cedula,fecha_naci,nombre_aseguradora FROM paciente
     CROSS JOIN aseguradora
     CROSS JOIN correo
@@ -15,23 +14,16 @@ if (isset($_POST['buscar'])) {
     CROSS JOIN paciente_vs_correo ON paciente.cedula = paciente_vs_correo.id_paciente
     CROSS JOIN paciente_vs_telefono ON paciente.cedula = paciente_vs_telefono.id_paciente
     WHERE aseguradora.id_aseguradora = paciente_vs_aseguradora.id_aseguradora AND correo.id_correo = paciente_vs_correo.id_correo AND paciente.cedula = $cedula;");
-    //$resultados = mysqli_query($conex, "SELECT * FROM paciente p, paciente_vs_telefono pt, paciente_vs_correo pc WHERE p.cedula ='$cedula' AND pt.id_paciente ='$cedula' AND pc.id_paciente ='$cedula'");
+
     while ($consulta = mysqli_fetch_array($resultados)) {
         $valores['existe'] = "1";
         $valores['nombre'] = $consulta['nombre'];
         $valores['apellido'] = $consulta['apellido'];
         $valores['correo'] = $consulta['correo'];
         $valores['num_telefono'] = $consulta['num_telefono'];
-       // $valores['sexo'] = $consulta['sexo'];
-       // $valores['fecha'] = $consulta['fecha_naci'];
-       // $valores['cedula'] = $consulta['cedula'];
         $valores['seguro'] = $consulta['seguro'];
         $valores['nombre_aseguradora'] = $consulta['nombre_aseguradora'];
         $valores['direccion'] = $consulta['direccion'];
-       // $valores['tipo_sangre'] = $consulta['tipo_sangre'];
-       // $valores['status'] = $consulta['status'];
-        //$valores['celular'] = $consulta['celular'];
-       
     }
     $valores = json_encode($valores);
     echo $valores;
@@ -39,17 +31,72 @@ if (isset($_POST['buscar'])) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-if (isset($_POST['buscar2'])) {
-    $cedula = $_POST['cedula'];
-    $valores2 = array();
-    $valores2['existe'] = "0";
+if (isset($_POST['busca'])) {
+    $procedimiento = $_POST['procedimiento'];
+    $valores = array();
+    $valores['existe'] = "0";
 
-    $resultados2 = mysqli_query($conex, "SELECT * FROM paciente_vs_telefono WHERE id_paciente = '$cedula' ");
-    while ($consulta2 = mysqli_fetch_array($resultados2)) {
-        $valores2['existe'] = "1";
-        $valores2['num_telefono'] = $consulta2['num_telefono'];
+    $resultados = mysqli_query($conn, "SELECT precio_proc FROM procedimientos  WHERE id_proc = $procedimiento;");
+
+    while ($consulta = mysqli_fetch_array($resultados)) {
+        $valores['existe'] = "1";
+        $valores['precio'] = $consulta['precio_proc'];
     }
-    sleep(1);
-    $valores2 = json_encode($valores2);
-    echo $valores2;
+    $valores = json_encode($valores);
+    echo $valores;
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+if (isset($_POST['buscando'])) {
+    $cedula = $_POST['cedula'];
+    $valores = array();
+    $valores['existe'] = "0";
+
+    $resultados = mysqli_query($conn, "SELECT cedula FROM paciente WHERE cedula =$cedula;");
+
+    while ($consulta = mysqli_fetch_array($resultados)) {
+
+        $valores['existe'] = "1";
+
+        $valores['nombre'] = " ";
+        $valores['apellido'] = " ";
+        $valores['correo'] = " ";
+        $valores['fecha_nacimiento'] = " ";
+        $valores['cedula'] = " ";
+        $valores['seguro'] = " ";
+        $valores['afiliado'] = " ";
+        $valores['direccion'] = " ";
+        $valores['telefono'] = " ";
+        $valores['sexo'] = " ";
+    }
+    $valores = json_encode($valores);
+    echo $valores;
+}
+
+if (isset($_POST['buscando_doctor'])) {
+    $cedula = $_POST['cedula'];
+    $valores = array();
+    $valores['existe'] = "0";
+
+    $resultados = mysqli_query($conn, "SELECT cedula FROM doctor WHERE cedula =$cedula;");
+
+    while ($consulta = mysqli_fetch_array($resultados)) {
+
+        $valores['existe'] = "1";
+
+        $valores['nombre'] = " ";
+        $valores['apellido'] = " ";
+        $valores['email'] = " ";
+        $valores['exequatur'] = " ";
+        $valores['cedula'] = " ";
+        $valores['especialidad'] = " ";
+        $valores['direccion'] = " ";
+        $valores['telefono'] = " ";
+        
+    }
+    $valores = json_encode($valores);
+    echo $valores;
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+    

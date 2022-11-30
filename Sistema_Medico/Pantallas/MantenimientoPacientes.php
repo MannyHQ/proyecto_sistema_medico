@@ -98,7 +98,7 @@ $result = mysqli_query($conn, $query);
                                 <font style="vertical-align: inherit;">Cedula</font>
                             </font>
                         </label>
-                        <input name="cedula" type="text" class="form-control" id="cedula" minlength="11" maxlength="13" required="">
+                        <input name="cedula" onblur="buscar_paciente();" type="text" class="form-control" id="cedula" minlength="11" maxlength="13" required="">
                         <div class="valid-tooltip">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">
@@ -351,6 +351,55 @@ $result = mysqli_query($conn, $query);
 
 </div>
 
+
+
+<script type="text/javascript">
+
+    function buscar_paciente() {
+        cedula = $("#cedula").val();
+
+        var parametros =
+                {
+                    "buscando": "1",
+                    "cedula": cedula
+                };
+
+        $.ajax(
+                {
+                    data: parametros,
+                    dataType: 'json',
+                    url: '../Procesos/procesosCobertura.php',
+                    type: 'post',
+                    beforeSend: function ()
+                    {
+                        //  alert("Enviando");
+                    },
+                    error: function ()
+                    {
+                        // alert("Error");
+                    },
+                    complete: function ()
+                    {
+                        //   alert("Este Paciente Existe");
+                    },
+                    success: function (valores)
+                    {
+                        alert("Este Paciente Existe");
+                        $("#nombre").val(valores.nombre);
+                        $("#apellido").val(valores.apellido);
+                        $("#correo").val(valores.correo);
+                        $("#fecha_nacimiento").val(valores.fecha_nacimiento);
+                        $("#cedula").val(valores.cedula);
+                        $("#seguro").val(valores.seguro);
+                        $("#afiliado").val(valores.afiliado);
+                        $("#direccion").val(valores.direccion);
+                        $("#validationTooltip02").val(valores.telefono);
+                        $("#sexo").val(valores.sexo);
+                    }
+                })
+    }
+
+</script>
 
 
 <?php

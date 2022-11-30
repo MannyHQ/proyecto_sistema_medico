@@ -63,7 +63,7 @@ include("../includes/header.php");
                     </div>
                 </div>
 
-                <input type="hidden" name="_next" value="http://localhost/Sistema_Medico/proyecto_sistema_medico/Sistema_Medico/Pantallas/procesoCobertura.php">
+                <input type="hidden" name="_next" value="http://localhost/Sistema_Medico/Pantallas/procesoCobertura.php">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
 
