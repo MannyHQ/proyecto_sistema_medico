@@ -1,0 +1,14 @@
+#butlis{
+    margin: 5px;
+    margin-top: 25px;
+    border: none;
+}
+
+#fila{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+.form-control{
+    border-radius: 30px;
+}
