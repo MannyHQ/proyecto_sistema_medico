@@ -11,7 +11,7 @@ $result = mysqli_query($conn, $query);
 
 
 <div class="container-fluid p-5">
-    <div class="col-md-6 shadow-lg p-5 mb-5 bg-light  rounded">
+    <div class="container-sm p-5 shadow-lg  mb-5 bg-light rounded">
         <h1 class="p-3 text-left ">Cobertura</h1>
 
         <form action="../Procesos/registrarCobertura.php" method="post" class="needs-validation">

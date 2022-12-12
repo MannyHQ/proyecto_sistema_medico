@@ -24,7 +24,7 @@ $result = mysqli_query($conn, $query);
         <div class="col-md-6 shadow-lg p-2 mb-5 bg-light  rounded">
             <h1 class="p-3 text-left ">Mantenimiento Usuarios</h1>
             <div class="p-4">
-                <form name="formulario" action="../Procesos/procesosUsuario.php" method="POST" class="row g-3 needs-validation was-validated" novalidate="">
+                <form name="formulario" action="../Procesos/procesosUsuario.php" method="POST" class="row g-3 needs-validation was-validated">
                     <!--NOMBRE-->
                     <div class="col-md-3 position-relative">
                         <label for="" class="form-label">
@@ -38,7 +38,7 @@ $result = mysqli_query($conn, $query);
                                     <font style="vertical-align: inherit;">@</font>
                                 </font>
                             </span>
-                            <input name="username" type="text" class="form-control" id="username" aria-describedby="validationTooltipUsernamePrepend" required="">
+                            <input name="username" type="text" class="form-control" id="username" aria-describedby="validationTooltipUsernamePrepend" required>
                             <div class="invalid-tooltip">
                                 <font style="vertical-align: inherit;">
                                     <font style="vertical-align: inherit;">
@@ -54,7 +54,7 @@ $result = mysqli_query($conn, $query);
                                 <font style="vertical-align: inherit;">Contraseña</font>
                             </font>
                         </label>
-                        <input name="password" type="password" class="form-control" id="password" minlength="11" maxlength="13" required="">
+                        <input name="password" type="password" class="form-control" id="password" minlength="8" maxlength="15" required>
                         <div class="valid-tooltip">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">
@@ -69,7 +69,7 @@ $result = mysqli_query($conn, $query);
                                 <font style="vertical-align: inherit;">Nombre</font>
                             </font>
                         </label>
-                        <input name="nombre" type="text" class="form-control" id="nombre" required="">
+                        <input name="nombre" type="text" class="form-control" id="nombre" required>
                         <div class="valid-tooltip">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">
@@ -84,7 +84,7 @@ $result = mysqli_query($conn, $query);
                                 <font style="vertical-align: inherit;">Apellido</font>
                             </font>
                         </label>
-                        <input name="apellido" id="apellido" type="text" class="form-control" minlength="3" maxlength="40" required="">
+                        <input name="apellido" id="apellido" type="text" class="form-control" minlength="3" maxlength="40" required>
                         <div class="valid-tooltip">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">
@@ -99,7 +99,7 @@ $result = mysqli_query($conn, $query);
                                 <font style="vertical-align: inherit;">Tipo Usuario</font>
                             </font>
                         </label>
-                        <select name="tipo_usuario" class="form-select" id="tipo_usuario" required="">
+                        <select name="tipo_usuario" class="form-select" id="tipo_usuario" required>
                             <?php foreach ($result as $opciones) : ?>
 
                                 <option value="<?php echo $opciones['id_tipo'] ?>"><?php echo $opciones['nombre_tipo'] ?></option>

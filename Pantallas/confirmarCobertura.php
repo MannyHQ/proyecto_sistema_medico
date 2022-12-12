@@ -23,6 +23,7 @@ include("../includes/header.php");
                         <td>PROCEDIMIENTO</td>
                         <td>NUMERO_ARS</td>
                         <td>DIRECCION</td>
+                        <td>FECHA COBERTURA</td>
 
                     </tr>
 
@@ -42,6 +43,7 @@ include("../includes/header.php");
                         <input name="procedimiento" type="hidden" class="form-control" id="procedimiento" value="<?php echo $mostrar['procedimiento'] ?>" placeholder="recibi" >
                         <input name="num_ars" type="hidden" class="form-control" id="num_ars" value="<?php echo $mostrar['num_ars'] ?>" placeholder="recibi" >
                         <input name="direccion" type="hidden" class="form-control" id="direccion" value="<?php echo $mostrar['direccion'] ?>" placeholder="recibi" >
+                        <input name="fecha_cobertura" type="hidden" class="form-control" id="fecha_cobertura" value="<?php echo $mostrar['fecha_cobertura'] ?>" placeholder="recibi" >
                         <tr>
                             <td ><?php echo $mostrar['cedula'] ?></td>
                             <td><?php echo $mostrar['nombre'] ?></td>
@@ -52,6 +54,7 @@ include("../includes/header.php");
                             <td><?php echo $mostrar['procedimiento'] ?></td>
                             <td><?php echo $mostrar['num_ars'] ?></td>
                             <td><?php echo $mostrar['direccion'] ?></td>
+                            <td><?php echo $mostrar['fecha_cobertura'] ?></td>
                         </tr>
                         <?php
                     }

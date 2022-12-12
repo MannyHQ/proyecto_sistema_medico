@@ -29,7 +29,7 @@ if (isset($_POST['btn_enviar'])) {
     $res = mysqli_fetch_array($bus);
     $nom_pro = $res['nombre_proc'];
 
-    $consulta = "INSERT INTO cobertura(nombre,apellido,cedula,email,telefono,celular,ars,num_ars,direccion,status,procedimiento,precio,cob_solicitado,num_autorizacion) VALUES ('$nombre','$apellido','$cedula','$email','$telefono','$celular','$ars','$num_ars','$direccion','$status','$nom_pro','$precio','$cob_solicitado','$aleatorio')";
+    $consulta = "INSERT INTO cobertura(nombre,apellido,cedula,email,telefono,celular,ars,num_ars,direccion,status,procedimiento,precio,cob_solicitado,num_autorizacion,fecha_cobertura) VALUES ('$nombre','$apellido','$cedula','$email','$telefono','$celular','$ars','$num_ars','$direccion','$status','$nom_pro','$precio','$cob_solicitado','$aleatorio',NOW())";
 
     $resultado = mysqli_query($conn, $consulta);
     if (!$resultado) {

@@ -5,22 +5,8 @@
 <script src="https://kit.fontawesome.com/00a751b619.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="../JS/buscador.js"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<script type="application/javascript">
-      $(document).ready(function() {
-            var t = $('#example').DataTable();
-            var counter = 1;
+<script src="../datatables/"></script>
 
-            $('#addRow').on('click', function() {
-                  t.row.add([counter + '.Hola', counter + '.2']).draw(false);
-
-                  counter++;
-            });
-
-            // Automatically add a first row of data
-            $('#addRow').click();
-      });
-</script>
 </body>
 
 </html>
