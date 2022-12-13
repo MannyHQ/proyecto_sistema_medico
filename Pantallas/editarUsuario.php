@@ -1,3 +1,5 @@
+<?php include("../includes/header.php") ?>
+
 <?php include("../DATABASE/db.php");
 
 //Para traer datos de los tipos de usuario

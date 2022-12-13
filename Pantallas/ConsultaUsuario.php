@@ -1,8 +1,10 @@
+<?php include("../includes/header.php") ?>
+
 <?php
 include("../DATABASE/db.php");
 $query = "SELECT * FROM tipo_usuario";
 $result = mysqli_query($conn, $query);
-include("../includes/header.php");
+
 ?>
 
 

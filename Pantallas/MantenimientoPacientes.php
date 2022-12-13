@@ -1,3 +1,5 @@
+<?php include("../includes/header.php") ?>
+
 <?php
 include("../DATABASE/db.php");
 
@@ -5,7 +7,7 @@ $query = "SELECT * FROM aseguradora";
 $result = mysqli_query($conn, $query);
 ?>
 
-<?php include("../includes/header.php") ?>
+
 
 
 <div class="container-fluid p-5">

@@ -1,6 +1,8 @@
+<?php include("../includes/header.php") ?>
+
 <?php
 include("../DATABASE/db.php");
-include("../includes/header.php");
+
 ?>
 
 <div class="container"> 
@@ -11,7 +13,7 @@ include("../includes/header.php");
 
         <div class="col-md-6" class="row mt-3 g-3 needs-">
 
-            <form action="https://formsubmit.co/isaacespinal.iee@gmail.com" method="POST" >
+            <form action="https://formsubmit.co/erikrdbs@gmail.com" method="POST" >
                 <table border="2" >
                     <tr>
                         <td>CEDULA</td>
@@ -67,7 +69,7 @@ include("../includes/header.php");
                     </div>
                 </div>
 
-                <input type="hidden" name="_next" value="http://localhost/Sistema_Medico_ofi/Pantallas/procesoCobertura.php">
+                <input type="hidden" name="_next" value="http://localhost/proyecto_sistema_Medico/Pantallas/procesoCobertura.php">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
 

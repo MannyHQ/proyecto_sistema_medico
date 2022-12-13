@@ -1,3 +1,5 @@
+<?php include("../includes/header.php") ?>
+
 <?php
 ///Para traer tipo usuario
 include("../DATABASE/db.php");
@@ -7,7 +9,7 @@ $result = mysqli_query($conn, $query);
 
 ?>
 
-<?php include("../includes/header.php") ?>
+
 
 
 

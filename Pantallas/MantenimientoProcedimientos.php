@@ -1,9 +1,11 @@
+<?php include("../includes/header.php") ?>
+
 <?php
 ///Para traer tipo usuario
 include("../DATABASE/db.php");
 ?>
 
-<?php include("../includes/header.php") ?>
+
 
 <div class="container-fluid p-5">
     <div class="row">

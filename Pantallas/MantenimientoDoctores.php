@@ -1,3 +1,5 @@
+<?php include("../includes/header.php") ?>
+
 <?php
 ///Para traer tipo usuario
 include("../DATABASE/db.php");
@@ -5,7 +7,7 @@ include("../DATABASE/db.php");
 $query = "SELECT * FROM tipo_usuario";
 $result = mysqli_query($conn, $query);
 ?>
-<?php include("../includes/header.php") ?>
+
 
 <div class="container-fluid p-5">
 
