@@ -15,7 +15,7 @@ if (isset($_POST['btn_enviar'])) {
         $status = 1;
     }
 
-    $consulta = "INSERT INTO factura(id_paciente,monto,fecha_factura,tipo_pago,status) VALUES ('$cedula','$precio',NOW(),'$tipo_pago','$status')";
+    $consulta = "INSERT INTO factura(id_paciente,monto,fecha_factura,tipo_pago,status) VALUES ('$cedula','$precio',NOW(),'$tipo_pago',$status)";
 
     $resultado = mysqli_query($conn, $consulta);
     if (!$resultado) {

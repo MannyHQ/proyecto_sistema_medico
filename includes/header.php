@@ -12,17 +12,18 @@ if ($validar == NULL || $validar = "") {
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../css/alertify.css">
     <link rel="stylesheet" href="../css/themes/default.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="css/buttons.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-  
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -39,9 +40,9 @@ if ($validar == NULL || $validar = "") {
     <!--font awesome con CDN-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
-    <!-- CSS --> 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"> 
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css"> 
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css">
 
 
 
@@ -62,6 +63,55 @@ if ($validar == NULL || $validar = "") {
 
         #example tfoot {
             display: table-header-group !important;
+        }
+
+        @media (max-width:3920px) {
+            .btn-sq-responsive {
+                width: 200px !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                height: 200px !important;
+                font-size: 24px;
+            }
+        }
+
+        /* Style for Large Screen */
+        @media (max-width:991px) {
+            .btn-sq-responsive {
+                width: 150px !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                height: 150px !important;
+                font-size: 18px;
+            }
+        }
+
+        /* Style for Medium Screen */
+        @media (max-width:767px) {
+            .btn-sq-responsive {
+                width: 100px !important;
+                /* whatever width you want for medium screen */
+                max-width: 100% !important;
+                max-height: 100% !important;
+                height: 100px !important;
+                /* whatever height you want for medium screen */
+                font-size: 12px;
+            }
+        }
+
+        /* Style for Small Screen */
+        @media (max-width:575px) {
+            .btn-sq-responsive {
+                width: 50px !important;
+                /* whatever width you want for mobile screen */
+                max-width: 100% !important;
+                max-height: 100% !important;
+                height: 50px !important;
+                /* whatever height you want for mobile screen */
+                font-size: 5px;
+                padding: 0px;
+                font-size: 7px;
+            }
         }
     </style>
 
@@ -127,9 +177,9 @@ if ($validar == NULL || $validar = "") {
                 </form>
             </div>
 
-            
+
             <a class="btn btn-outline-success" href="../DATABASE/cerrarSesion.php">Cerrar Sesión</a>
 
-          
+
         </div>
     </nav>

@@ -103,7 +103,9 @@ $mysqli = new mysqli('localhost', 'root', '', 'consultorio_medico');
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
                                     <!-------------------------------------------------------------------------------------------BOTON PARA GUARDAR ---------------------------------------------------------------------------------------->
-                                    <button name="btn_enviar" type="submit" class="btn btn-primary">Cobrar</button>
+                                   <button name="btn_enviar"  type="submit" class="btn btn-primary"><i class = "fas fa-file-pdf"></i><Cobrar</button>
+                               
+
                                 </div>
                             </form>
                         </div>
@@ -128,7 +130,7 @@ $mysqli = new mysqli('localhost', 'root', '', 'consultorio_medico');
 
 
     <script type="text/javascript">
-
+  
       function rest() {
           var val1 = document.getElementById('precio').value;
           var val2 = document.getElementById('cobertura').value;
@@ -149,15 +151,15 @@ $mysqli = new mysqli('localhost', 'root', '', 'consultorio_medico');
               dataType: 'json',
               url: '../Procesos/procesosFactura.php',
               type: 'post',
-              beforeSend: function () {
-                  alert("Enviando");
-              },
-              error: function () {
-                  alert("Error");
-              },
-              complete: function () {
-                  alert("¡Listo!" + valores.nombre);
-              },
+           //   beforeSend: function () {
+                  //alert("Enviando");
+             // },
+            //  error: function () {
+              //    alert("Error");
+             // },
+             // complete: function () {
+            //      alert("¡Listo!" + valores.nombre);
+            //  },
               success: function (valores) {
                   $("#nombre").val(valores.nombre);
                   $("#num_telefono").val(valores.num_telefono);

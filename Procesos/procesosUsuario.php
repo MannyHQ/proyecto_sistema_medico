@@ -23,7 +23,7 @@
         }else{
             $ESTADO = FALSE;
         }
-        $query = "INSERT INTO usuario(username, password, nombre, apellido,hora_entrada, tipo_user,status) VALUES ('$username', '$password','$nombre','$apellido','5','$TIPO_USUARIO','$ESTADO')";
+        $query = "INSERT INTO usuario(username, password, nombre, apellido,hora_entrada, tipo_user,status) VALUES ('$username', '$password','$nombre','$apellido','5','$TIPO_USUARIO',$ESTADO)";
         $result = mysqli_query($conn, $query);
         if(!$result){
              die("Querry Failed");

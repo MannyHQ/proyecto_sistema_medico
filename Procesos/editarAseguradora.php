@@ -1,3 +1,5 @@
+<?php include("../includes/header.php") ?>
+
 <?php
 include("../DATABASE/db.php");
 
@@ -33,7 +35,7 @@ if (isset($_POST['update'])) {
     }
 
 
-    $query = "UPDATE aseguradora set nombre_aseguradora = '$NOMBRE', direccion_aseguradora = '$DIRECCION', STATUS = '$ESTADO', correo_aseguradora = '$CORREO', telefono =  '$TELEFONO'
+    $query = "UPDATE aseguradora set nombre_aseguradora = '$NOMBRE', direccion_aseguradora = '$DIRECCION', STATUS = $ESTADO, correo_aseguradora = '$CORREO', telefono =  '$TELEFONO'
     where id_aseguradora = $ID_ASEGURADORA";
     mysqli_query($conn, $query);
 
@@ -44,7 +46,7 @@ if (isset($_POST['update'])) {
 }
 ?>
 
-<?php include("../includes/header.php") ?>
+
 
 
 <div class="col-md-6 shadow-lg p-2 mb-5 bg-light mx-auto   rounded">

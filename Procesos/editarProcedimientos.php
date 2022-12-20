@@ -1,3 +1,5 @@
+<?php include("../includes/header.php") ?>
+
 <?php
 include("../DATABASE/db.php");
 
@@ -43,7 +45,7 @@ if (isset($_POST['update'])) {
 
 
 
-<?php include("../includes/header.php") ?>
+
 
 
 

@@ -15,7 +15,7 @@ if (isset($_POST['agregarProcedimiento'])) {
 
 
 
-    $query = "INSERT INTO procedimientos(nombre_proc, descripcion, precio_proc, status ) VALUES ('$nombre', '$descripcion','$precio','$ESTADO')";
+    $query = "INSERT INTO procedimientos(nombre_proc, descripcion, precio_proc, status ) VALUES ('$nombre', '$descripcion','$precio',$ESTADO)";
     $result = mysqli_query($conn, $query);
     if (!$result) {
         die("Querry Failed");

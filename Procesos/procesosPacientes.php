@@ -19,7 +19,7 @@ if (isset($_POST['agregarPaciente'])) {
     } else {
         $ESTADO = FALSE;
     }
-    $query = "INSERT INTO paciente(nombre, apellido, sexo, fecha_naci, cedula, seguro, direccion ,tipo_sangre, status_paciente) VALUES ('$nombre','$apellido', '$sexo','$fecha_nacimiento','$cedula','$afiliado','$direccion','$tipo_sangre','$ESTADO')";
+    $query = "INSERT INTO paciente(nombre, apellido, sexo, fecha_naci, cedula, seguro, direccion ,tipo_sangre, status_paciente) VALUES ('$nombre','$apellido', '$sexo','$fecha_nacimiento','$cedula','$afiliado','$direccion','$tipo_sangre',$ESTADO)";
     $result = mysqli_query($conn, $query);
     if (!$result) {
         die("Querry Failed");

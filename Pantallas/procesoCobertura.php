@@ -1,3 +1,6 @@
+<?php include("../includes/header.php") ?>
+
+
 <?php
 include("../DATABASE/db.php");
 
@@ -7,7 +10,7 @@ $result = mysqli_query($conn, $query);
 
 
 
-<?php include("../includes/header.php") ?>
+
 
 
 <div class="container-fluid p-5">

@@ -284,10 +284,10 @@ $result = mysqli_query($conn, $query);
                         <tbody>
                             <?php
                             $query = "SELECT doctor.id_doctor,nombre,sexo,direccion,exequatur,cedula,especialidades,horario, correo, num_telefono,doctor.status FROM doctor                        
-              CROSS JOIN correo                           
-              CROSS JOIN doctor_vs_correo ON doctor.cedula = doctor_vs_correo.id_doctor
-              CROSS JOIN doctor_vs_telefono ON doctor.cedula = doctor_vs_telefono.id_doctor
-              WHERE correo.id_correo = doctor_vs_correo.id_correo";
+                            CROSS JOIN correo                           
+                            CROSS JOIN doctor_vs_correo ON doctor.cedula = doctor_vs_correo.id_doctor
+                            CROSS JOIN doctor_vs_telefono ON doctor.cedula = doctor_vs_telefono.id_doctor
+                            WHERE correo.id_correo = doctor_vs_correo.id_correo";
                             $result_tasks = mysqli_query($conn, $query);
 
                             while ($row = mysqli_fetch_array($result_tasks)) {

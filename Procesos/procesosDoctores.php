@@ -19,7 +19,7 @@ if (isset($_POST['agregarDoctor'])) {
         $ESTADO = FALSE;
     }
 
-    $query = "INSERT INTO doctor(nombre, sexo, direccion, exequatur, cedula, especialidades ,horario, status) VALUES ('$nombre', '$sexo','$direccion','$exaquatur','$cedula','$especialidades','$horario','$ESTADO')";
+    $query = "INSERT INTO doctor(nombre, sexo, direccion, exequatur, cedula, especialidades ,horario, status) VALUES ('$nombre', '$sexo','$direccion','$exaquatur','$cedula','$especialidades','$horario',$ESTADO)";
     $result = mysqli_query($conn, $query);
     if (!$result) {
         die("Querry Failed");

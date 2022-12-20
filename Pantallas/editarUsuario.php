@@ -62,7 +62,7 @@ if (isset($_POST['update'])) {
     }
 
 
-    $query = "UPDATE usuario set username = '$NOMBRE_USUARIO', PASSWORD = '$PASSWORD', STATUS = '$ESTADO', TIPO_USER = '$TIPO_USUARIO', NOMBRE =  '$NOMBRE', APELLIDO = '$APELLIDO'
+    $query = "UPDATE usuario set username = '$NOMBRE_USUARIO', PASSWORD = '$PASSWORD', STATUS = $ESTADO, TIPO_USER = '$TIPO_USUARIO', NOMBRE =  '$NOMBRE', APELLIDO = '$APELLIDO'
     where ID_USUARIO = $ID_USUARIO";
     mysqli_query($conn, $query);
 
@@ -73,7 +73,7 @@ if (isset($_POST['update'])) {
 }
 ?>
 
-<?php include("../includes/header.php"); ?>
+
 
 
 

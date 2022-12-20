@@ -15,7 +15,7 @@ if (isset($_POST['agregarAseguradora'])) {
 
 
 
-    $query = "INSERT INTO aseguradora(nombre_aseguradora, direccion_aseguradora, correo_aseguradora,telefono,status ) VALUES ('$nombre_aseguradora', '$direccion','$correo','$telefono','$ESTADO')";
+    $query = "INSERT INTO aseguradora(nombre_aseguradora, direccion_aseguradora, correo_aseguradora,telefono,status ) VALUES ('$nombre_aseguradora', '$direccion','$correo','$telefono',$ESTADO)";
     $result = mysqli_query($conn, $query);
     if (!$result) {
         die("Querry Failed");
@@ -26,6 +26,13 @@ if (isset($_POST['agregarAseguradora'])) {
 
     header("Location: ../Pantallas/MantenimientoAseguradora.php");
 }
+
+
+
+
+
+
+
 
 //Codigo para editar en la base de datos
 if (isset($_POST['actualizarAseguradora'])) {
