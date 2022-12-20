@@ -32,7 +32,7 @@ if (isset($_POST['update'])) {
     }
 
 
-    $query = "UPDATE procedimientos set nombre_proc = '$NOMBRE', descripcion = '$DESCRIPCION', STATUS = '$ESTADO', precio_proc = '$PRECIO'
+    $query = "UPDATE procedimientos set nombre_proc = '$NOMBRE', descripcion = '$DESCRIPCION', STATUS = $ESTADO, precio_proc = '$PRECIO'
     where id_proc = $ID_PROCEDIMIENTO";
     mysqli_query($conn, $query);
 
